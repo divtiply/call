@@ -1,0 +1,6 @@
+CALL (Common AutoLISP Library).
+
+Heavily inspired by Reine Urban' STDLIB (Standard AutoLISP Library).
+Born because of NIH syndrome.
+
+See the LICENSE file for license rights and limitations (MIT).
