@@ -312,19 +312,7 @@
          vle-sublist)
     (defun ll-lastn (lst n)
       (vle-sublist lst (- (length lst) n) 0))
-
-    ;; Faster for smaller _n_s.
-    ;; (defun ll-lastn (lst n / out)
-    ;;   ;; Non-conformity: returns a _copy_ of the list tail, should return the tail itself.
-    ;;   (nth n (list nil)) ; raise error if not natnump
-    ;;   (setq lst (reverse lst))
-    ;;   (while (and lst (< 0 n))
-    ;;     (setq n (1- n)
-    ;;           out (cons (car lst) out)
-    ;;           lst (cdr lst)))
-    ;;   out)
-
-    ;; Faster for larger _n_s.
+    ;; Faster for larger Ns.
     (defun ll-lastn (lst n / out)
       (setq out lst
             lst (ll-nthcdr n lst))
@@ -332,6 +320,17 @@
         (setq out (cdr out)
               lst (cdr lst)))
       out))
+    ;; Faster for smaller Ns.
+    ;; (defun ll-lastn (lst n / out)
+    ;;   ;; Non-conformity: returns a _copy_ of the list tail,
+    ;;   ;; should return the tail itself.
+    ;;   (nth n (list nil)) ; raise error if not natnump
+    ;;   (setq lst (reverse lst))
+    ;;   (while (and lst (< 0 n))
+    ;;     (setq n (1- n)
+    ;;           out (cons (car lst) out)
+    ;;           lst (cdr lst)))
+    ;;   out)
 
 ;; ### ll-sublist
 ;; (**ll-sublist** [listp]: _lst_ [ll-natnump]: _start_ [ll-natnump]: _len_) -> [listp]
@@ -699,13 +698,6 @@
          (setq out (cons out (car newlst)) newlst (cdr newlst)
                pend (car pendlst) pendlst (cdr pendlst))))
      out)))
-
-;; ### foreach
-;; (**foreach** [symbolp]: _sym_ [listp]: _lst_ [_expr_...]) -> [ll-anyp]
-;;
-;; TODO
-;;
-;; AutoLISP built-in.
 
 ;; ### ll-some
 ;; (**ll-some** [ll-functionp]: _pred_ [listp]: _lst_) -> [ll-booleanp]
@@ -1187,7 +1179,7 @@
 ;; Identical to LispEx `vle-remove-nth`.
 (if (and (not *call:ignore-lispex*)
          vle-remove-nth)
-    (setq remove-nth vle-remove-nth)
+    (setq ll-remove-nth vle-remove-nth)
     (defun ll-remove-nth (n lst)
       (setq lst (ll-split-at n lst))
       (append (car lst) (cdadr lst))))
@@ -1273,25 +1265,25 @@
 ;; Expotrs
 '(
   ;; Predictates:
-  ;atom
-  ;null
+  ;; atom
+  ;; null
   ll-consp
-  ;listp
+  ;; listp
   ll-endp
 
   ;; Constructors:
-  ;cons
-  ;list
+  ;; cons
+  ;; list
   ll-make-list
 
   ;; Selectors:
-  ;car cdr
-  ;caar ... cddddr
+  ;; car cdr
+  ;; caar ... cddddr
   ll-first ll-second ll-third ll-fourth ll-fifth
   ll-sixth ll-seventh ll-eighth ll-ninth ll-tenth
   ll-rest
-  ;last
-  ;nth
+  ;; last
+  ;; nth
   ll-nthcdr
   ll-firstn
   ll-butlast
@@ -1308,25 +1300,24 @@
   ll-separate
 
   ;; Operations:
-  ;length
+  ;; length
   ll-list-length
-  ;reverse
-  ;append
+  ;; reverse
+  ;; append
   ll-revappend
   ll-copy-list ll-copy-tree
   ll-count
   ll-count-if ll-count-if-not
 
   ;; Iteration:
-  ;mapcar
+  ;; mapcar
   ll-maplist ll-maptree
-  ;foreach
   ll-some ll-every
   ll-foldl ll-foldr
   ll-reduce ll-reduce-from-end ll-reduce-with-init
 
   ;; Searching:
-  ;member
+  ;; member
   ll-member-if ll-member-if-not
   ll-position
   ll-position-if ll-position-if-not
@@ -1334,7 +1325,7 @@
   ll-mismatch
 
   ;; Modifying:
-  ;subst
+  ;; subst
   ll-subst-if ll-subst-if-not
   ll-subst-nth ll-subst-first ll-subst-last
   ll-substree ll-sublis
@@ -1344,7 +1335,7 @@
   ll-remove-if ll-remove-if-not
   ll-remove-nth ll-remove-first ll-remove-last
   ll-remove-duplicates ll-remove-adjacent-duplicates
-  ;sort
+  ;; sort sort-i
 
   ;; Tail Sharing:
   ll-tailp ll-ldiff
