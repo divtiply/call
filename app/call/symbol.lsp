@@ -9,6 +9,23 @@
 ;; # Symbols
 ;; =========
 
+;; ### set
+;; (**set** _sym_ _v_) -> [ll-anyp]
+;; - _sym_ : [integerp]
+;; - _v_ : [ll-anyp]
+;;
+;; TODO
+;;
+;; AutoLISP built-in.
+
+;; ### boundp
+;; (**boundp** _sym_) -> [ll-booleanp]
+;; - _sym_ : [ll-symbolp]
+;;
+;; Returns `t` if _sym_ has a value bound to it, `nil` otherwise.
+;;
+;; AutoLISP built-in.
+
 ;; ### ll-symbolp
 ;; (**ll-symbolp** [ll-anyp]: _v_) -> [ll-booleanp]
 ;;
@@ -81,6 +98,8 @@
 
 ;; Exports
 '(
+  ;; set
+  ;; boundp
   ll-symbolp
   ll-symbol-value ll-symbol-name
   ;atoms-family
