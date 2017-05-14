@@ -604,7 +604,7 @@
 ;; http://www.gigamonkeys.com/book/beyond-lists-other-uses-for-cons-cells.html
 (defun ll-copy-tree (tr)
   (if (atom tr)
-      ther
+      tr
       (cons (ll-copy-tree (car tr))
         (ll-copy-tree (cdr tr)))))
 
