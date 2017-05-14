@@ -107,6 +107,25 @@
   (repeat n
     (setq lst (cons v lst))))
 
+;; ### ll-iota
+;; > (**ll-iota** [ll-natnump]: _n_) -> [listp]
+;;
+;; TODO
+(defun ll-iota (n / lst)
+  ;; same as (ll-iota-range 0 n 1)
+  (repeat n
+    (setq lst (cons (setq n (1- cnt)) lst))))
+
+;; (defun ll-range (start end step / len lst)
+;;   ;; FIXME: try (ll-range 0 10.1 0.5)
+;;   (setq len (- end start)
+;;         len (fix (if (zerop (rem len step))
+;;                      (/ len step)
+;;                      (1+ (/ len step)))
+;;         end (+ start (* step len)))
+;;   (repeat
+;;     (setq lst (cons (setq end (- end step)) lst))))
+
 
 ;; ## List Selectors
 ;; -----------------
@@ -1275,6 +1294,7 @@
   ;; cons
   ;; list
   ll-make-list
+  ll-iota ll-range
 
   ;; Selectors:
   ;; car cdr
