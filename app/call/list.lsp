@@ -381,7 +381,7 @@
 
 ;; ### ll-split-if {#ll-split-if}{#ll-split-if-not}
 ;; (**ll-split-if** [ll-functionp]: _pred_ [listp]: _lst_) -> [listp]
-;; (**ll-split-if-not** _pred_ _lst_) -> [listp]
+;; (**ll-split-if-not** [ll-functionp]: _pred_ [listp]: _lst_) -> [listp]
 ;;
 ;; TODO
 (if *call:enable-preeval*
