@@ -10,8 +10,8 @@
 ;; =========
 
 
-;; ## Type Predictates
-;; -------------------
+;; ## Predictates
+;; --------------
 
 ;; ### ll-integerp
 ;; > (**ll-integerp** [ll-anyp]: _v_) -> [ll-booleanp]
@@ -36,10 +36,6 @@
   (setq ll-realp vle-realp)
   (defun ll-realp (v)
     (eq 'REAL (type v))))
-
-
-;; ## Predictates
-;; --------------
 
 ;; ### numberp
 ;; > (**numberp** [ll-anyp] _v_) -> [ll-booleanp]
