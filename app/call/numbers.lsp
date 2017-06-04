@@ -195,7 +195,7 @@
         ((< hi x) hi)
         (t x)))
 
-;;; ### rem
+;; ### rem
 ;; > (**rem** [numberp]: _z_ [numberp]: _w_ ...) -> [numberp]
 ;;
 ;; Returns the reminder from _z_ divided by _w_.
