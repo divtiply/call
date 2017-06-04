@@ -195,6 +195,17 @@
         ((< hi x) hi)
         (t x)))
 
+;; ### ll-lerp
+;; (**ll-lerp [numberp]: _x_ [numberp]: _y_ [numberp]: _s_)
+;;
+;; Returns the linear interpolation between _x_ and _y_ by amount of _s_.
+(defun ll-lerp (x y s)
+  ;; Precise method, which guarantees x = y when s = 1.
+  ;; https://en.wikipedia.org/wiki/Linear_interpolation#Programming_language_support
+  (+ (* x (- 1 s)) (* y s)))
+  ;; TODO: ? slerp nlerp
+  ;; https://keithmaggio.wordpress.com/2011/02/15/math-magician-lerp-slerp-and-nlerp/
+
 ;; ### rem
 ;; > (**rem** [numberp]: _z_ [numberp]: _w_ ...) -> [numberp]
 ;;
