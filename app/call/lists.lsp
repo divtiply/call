@@ -1,4 +1,4 @@
-;;; call/list.lsp --- Lists
+;;; call/lists.lsp --- Lists
 
 ;; Copyright (C) CALL Team and Contributors
 
@@ -1279,7 +1279,7 @@
   (reverse out))
 
 
-(if ll-features (ll-provide "call/list"))
+(if ll-features (ll-provide "call/lists"))
 
 ;; Expotrs
 '(

@@ -1,4 +1,4 @@
-;;; call/listset.lsp --- Lists as Sets
+;;; call/lsets.lsp --- Lists as Sets
 
 ;; Copyright (C) CALL Team and Contributors
 
@@ -106,7 +106,7 @@
               (ll-set-difference lst2 lst1))))
 
 
-(if ll-features (ll-provide "call/listset"))
+(if ll-features (ll-provide "call/lsets"))
 
 ;; Exports
 '(

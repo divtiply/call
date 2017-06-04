@@ -1,4 +1,4 @@
-;;; call/symbol.lsp --- Symbols
+;;; call/symbols.lsp --- Symbols
 
 ;; Copyright (C) CALL Team and Contributors
 
@@ -94,7 +94,7 @@
 ;; AutoLISP built-in.
 
 
-(if ll-features (ll-provide "call/symbol"))
+(if ll-features (ll-provide "call/symbols"))
 
 ;; Exports
 '(
