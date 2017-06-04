@@ -645,8 +645,8 @@
 ;; [ll-realp]: **ll-ln2**
 ;;
 ;; Natural logarithm of 10 (approx. 2.303) or 2 (approx. 0.693), respectively.
-(setq ll-ln10 (log 10) ; 2.303
-      ll-ln2  (log 2)) ; 0.693
+(setq ll-ln10 (log 10) ; 2.302585092994046
+      ll-ln2  (log 2)) ; 0.6931471805599453
 
 ;; ### ll-log10e, ll-log2e
 ;; [ll-realp]: **ll-log10e**
