@@ -185,7 +185,7 @@
 ;; AutoLISP built-in.
 
 ;; ### ll-clamp
-;; (**ll-clamp _x_ _lo_ _hi_)
+;; (**ll-clamp [numberp]: _x_ [numberp]: _lo_ [numberp]: _hi_) => [numberp]
 ;;
 ;; Returns _x_ if it is larger than _lo_ and smaller than _hi_. In case _x_ is
 ;; smaller than _lo_, _lo_ is returned. If _x_ is larger than _hi_, _hi_
@@ -196,7 +196,7 @@
         (t x)))
 
 ;; ### ll-lerp
-;; (**ll-lerp [numberp]: _x_ [numberp]: _y_ [numberp]: _s_)
+;; (**ll-lerp [numberp]: _x_ [numberp]: _y_ [numberp]: _s_) => [numberp]
 ;;
 ;; Returns the linear interpolation between _x_ and _y_ by amount of _s_.
 (defun ll-lerp (x y s)
