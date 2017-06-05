@@ -23,8 +23,7 @@
   ll-void (princ))
 
 ;; ### ll-voidp
-;; (**ll-voidp** _v_) -> [ll-booleanp]
-;; - _v_ : [ll-anyp]
+;; (**ll-voidp** [ll-anyp]: _v_) -> [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ is a *void*, `nil` otherwise.
 (defun ll-voidp (v)
