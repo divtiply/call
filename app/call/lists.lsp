@@ -192,17 +192,19 @@
       ll-ninth   vle-nth8
       ll-tenth   vle-nth9
       )
-    (setq
-      ll-first   car
-      ll-second  cadr
-      ll-third   caddr
-      ll-fourth  cadddr
-      ll-fifth   (lambda (lst)       (car    (cddddr lst)))
-      ll-sixth   (lambda (lst)       (cadr   (cddddr lst)))
-      ll-seventh (lambda (lst)       (caddr  (cddddr lst)))
-      ll-eighth  (lambda (lst)       (cadddr (cddddr lst)))
-      ll-ninth   (lambda (lst) (car  (cddddr (cddddr lst))))
-      ll-tenth   (lambda (lst) (cadr (cddddr (cddddr lst))))
+    (progn
+      (setq
+        ll-first   car
+        ll-second  cadr
+        ll-third   caddr
+        ll-fourth  cadddr
+        )
+      (defun ll-fifth   (lst)       (car    (cddddr lst)))
+      (defun ll-sixth   (lst)       (cadr   (cddddr lst)))
+      (defun ll-seventh (lst)       (caddr  (cddddr lst)))
+      (defun ll-eighth  (lst)       (cadddr (cddddr lst)))
+      (defun ll-ninth   (lst) (car  (cddddr (cddddr lst))))
+      (defun ll-tenth   (lst) (cadr (cddddr (cddddr lst))))
       ))
 
 ;; ### ll-rest
