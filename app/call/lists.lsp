@@ -593,16 +593,29 @@
           lst (cdr lst)))
   v)
 
-;; FIXME: OPTIMIZE
-;; http://www.gigamonkeys.com/book/beyond-lists-other-uses-for-cons-cells.html
+;; ### ll-copy-list
+;; (*ll-copy-list* [listp]: _lst_)
+;;
+;; TODO
 (defun ll-copy-list (lst)
+  ;; http://www.gigamonkeys.com/book/beyond-lists-other-uses-for-cons-cells.html
+  ;; FIXME: OPTIMIZE
   (if (atom lst)
       lst
       (cons (car lst) (ll-copy-list (cdr lst)))))
+;; (defun ll-copy-list (lst)
+;;   ;; (append lst nil)) ; Doesn't works properly in BircsCAD
+;;   (append nil lst nil)) ; FIXME: (LL-COPY-LIST '(A . B)) fails
 
-;; FIXME: OPTIMIZE
-;; http://www.gigamonkeys.com/book/beyond-lists-other-uses-for-cons-cells.html
+;; TODO: copy-alist
+
+;; ### ll-copy-tree
+;; (*ll-copy-tree* [listp]: _lst_)
+;;
+;; TODO
 (defun ll-copy-tree (tr)
+  ;; http://www.gigamonkeys.com/book/beyond-lists-other-uses-for-cons-cells.html
+  ;; FIXME: OPTIMIZE
   (if (atom tr)
       tr
       (cons (ll-copy-tree (car tr))
