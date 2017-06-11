@@ -185,24 +185,24 @@
 ;; AutoLISP built-in.
 
 ;; ### ll-clamp
-;; (**ll-clamp [numberp]: _x_ [numberp]: _lo_ [numberp]: _hi_) => [numberp]
+;; (**ll-clamp [numberp]: _z_ [numberp]: _lo_ [numberp]: _hi_) => [numberp]
 ;;
-;; Returns _x_ if it is larger than _lo_ and smaller than _hi_. In case _x_ is
-;; smaller than _lo_, _lo_ is returned. If _x_ is larger than _hi_, _hi_
+;; Returns _z_ if it is larger than _lo_ and smaller than _hi_. In case _z_ is
+;; smaller than _lo_, _lo_ is returned. If _z_ is larger than _hi_, _hi_
 ;; is returned.
-(defun ll-clamp (x lo hi)
-  (cond ((< x lo) lo)
-        ((< hi x) hi)
-        (t x)))
+(defun ll-clamp (z lo hi)
+  (cond ((< z lo) lo)
+        ((< hi z) hi)
+        (t z)))
 
 ;; ### ll-lerp
-;; (**ll-lerp [numberp]: _x_ [numberp]: _y_ [numberp]: _s_) => [numberp]
+;; (**ll-lerp [numberp]: _z_ [numberp]: _w_ [numberp]: _s_) => [numberp]
 ;;
-;; Returns the linear interpolation between _x_ and _y_ by amount of _s_.
-(defun ll-lerp (x y s)
-  ;; Precise method, which guarantees x = y when s = 1.
+;; Returns the linear interpolation between _z_ and _w_ by amount of _s_.
+(defun ll-lerp (z w s)
+  ;; Precise method, which guarantees z = w when s = 1.
   ;; https://en.wikipedia.org/wiki/Linear_interpolation#Programming_language_support
-  (+ (* x (- 1 s)) (* y s)))
+  (+ (* z (- 1 s)) (* w s)))
   ;; TODO: ? slerp nlerp
   ;; https://keithmaggio.wordpress.com/2011/02/15/math-magician-lerp-slerp-and-nlerp/
 
@@ -219,9 +219,15 @@
 ;; > (**ll-mod** [numberp]: _z_ [numberp]: _w_) -> [numberp]
 ;;
 ;; Returns the reminder from _z_ divided by _w_, with the same sign as _w_.
-(defun ll-mod (z w)
-  ;; http://mathforum.org/library/drmath/view/54377.html
-  (rem (+ w (rem z w)) w))
+;;
+;; Identical to BricsCAD LISP deprecated `mod`.
+(if (and (not *call:ignore-lispex*)
+         vle-extensions-active
+         mod)
+    (setq ll-mod mod)
+    (defun ll-mod (z w)
+      ;; http://mathforum.org/library/drmath/view/54377.html
+      (rem (+ w (rem z w)) w)))
 
 ;; ### ll-quot
 ;; > (**ll-quot** [numberp]: _z_ [numberp]: _w_) -> [numberp]
@@ -408,7 +414,7 @@
 ;;
 ;; Returns the base 10 logarithm of _z_.
 ;;
-;; Bricsys LispEx built-in as `log10`.
+;; Identical to BricsCAD LISP `log10`.
 (if (and (not *call:ignore-lispex*)
          vle-extensions-active
          log10)
@@ -481,7 +487,7 @@
 ;;
 ;; It is an error if not -1 <= _z_ <= 1.
 ;;
-;; Bricsys LispEx built-in as `asin`.
+;; Identical to BricsCAD LISP `asin`.
 (if (and (not *call:ignore-lispex*)
          vle-extensions-active
          asin)
@@ -497,7 +503,7 @@
 ;;
 ;; It is an error if not -1 <= _z_ <= 1.
 ;;
-;; Bricsys LispEx built-in as `acos`.
+;; Identical to BricsCAD LISP `acos`.
 (if (and (not *call:ignore-lispex*)
          vle-extensions-active
          acos)
@@ -553,7 +559,7 @@
 ;;
 ;; Returns the hyperbolic sine of _z_.
 ;;
-;; Bricsys LispEx built-in as `sinh`.
+;; Identical to BricsCAD LISP `sinh`.
 (if (and (not *call:ignore-lispex*)
          vle-extensions-active
          sinh)
@@ -568,7 +574,7 @@
 ;;
 ;; Returns the hyperbolic cosine of _z_.
 ;;
-;; Bricsys LispEx built-in as `cosh`.
+;; Identical to BricsCAD LISP `cosh`.
 (if (and (not *call:ignore-lispex*)
          vle-extensions-active
          cosh)
@@ -583,7 +589,7 @@
 ;;
 ;; Returns the hyperbolic tangent of _z_.
 ;;
-;; Bricsys LispEx built-in as `tanh`.
+;; Identical to BricsCAD LISP `tanh`.
 (if (and (not *call:ignore-lispex*)
          vle-extensions-active
          tanh)
@@ -614,7 +620,7 @@
 ;;
 ;; Returns the hyperbolic area tangent of _z_.
 ;;
-;; Bricsys LispEx built-in as `atanh`.
+;; Identical to BricsCAD LISP `atanh`.
 (if (and (not *call:ignore-lispex*)
          vle-extensions-active
          atanh)
