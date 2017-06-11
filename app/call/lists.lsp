@@ -114,7 +114,7 @@
 (defun ll-iota (n / lst)
   ;; same as (ll-iota-range 0 n 1)
   (repeat n
-    (setq lst (cons (setq n (1- cnt)) lst))))
+    (setq lst (cons (setq n (1- n)) lst))))
 
 ;; (defun ll-range (start end step / len lst)
 ;;   ;; FIXME: try (ll-range 0 10.1 0.5)
