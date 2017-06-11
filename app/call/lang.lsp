@@ -62,8 +62,7 @@
 ;; TODO
 
 ;; ### ll-functionp
-;; (**ll-functionp** _v_) -> [ll-booleanp]
-;; - _v_ : [ll-anyp]
+;; (**ll-functionp** [ll-anyp]: _v_) -> [ll-booleanp]
 ;;
 ;; TODO
 (defun ll-functionp (v)
@@ -100,29 +99,28 @@
 ;; AutoLISP built-in.
 
 ;; ### not
-;; (**not** _v_) -> [ll-booleanp]
-;; - _v_ : [ll-anyp]
+;; (**not** [ll-anyp]: _v_) -> [ll-booleanp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### ll-nand
-;; (**ll-nand** _v1_ _v2_]) -> [ll-booleanp]
+;; (**ll-nand** [ll-anyp]: _v1_ [ll-anyp]: _v2_]) -> [ll-booleanp]
 ;;
 ;; TODO
 (defun ll-nand (v1 v2)
   (not (and v1 v2)))
 
 ;; ### ll-nor
-;; (**ll-nor** _v1_ _v2_]) -> [ll-booleanp]
+;; (**ll-nor** [ll-anyp]: _v1_ [ll-anyp]: _v2_]) -> [ll-booleanp]
 ;;
 ;; TODO
 (defun ll-nor (v1 v2)
   (not (or v1 v2)))
 
 ;; ### ll-xor
-;; (**ll-xor** _v1_ _v2_]) -> [ll-booleanp]
+;; (**ll-xor** [ll-anyp]: _v1_ [ll-anyp]: _v2_]) -> [ll-booleanp]
 ;;
 ;; TODO
 (defun ll-xor (v1 v2)
@@ -162,7 +160,7 @@
 ;; AutoLISP built-in.
 
 ;; ### foreach
-;; (**foreach** [symbolp]: _sym_ [listp]: _lst_ [_expr_...]) -> [ll-anyp]
+;; (**foreach** [symbolp]: _sym_ [listp]: _lst_ ...) -> [ll-anyp]
 ;;
 ;; TODO
 ;;
@@ -173,19 +171,15 @@
 ;; ---------------------------
 
 ;; ### equal
-;; (**equal** _v1_ _v2_ [_fuzz_]) -> [ll-booleanp]
-;; - _v1_ : [ll-anyp]
-;; - _v2_ : [ll-anyp]
-;; - _fuzz_ : [numberp]
+;; (**equal** [ll-anyp]: _v1_ [ll-anyp]: _v2_) -> [ll-booleanp]
+;; (**equal** [ll-anyp]: _v1_ [ll-anyp]: _v2_ [numberp]: _fuzz_) -> [ll-booleanp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### eq
-;; (**eq** _v1_ _v2_) -> [ll-booleanp]
-;; - _v1_ : [ll-anyp]
-;; - _v2_ : [ll-anyp]
+;; (**eq** [ll-anyp]: _v1_ [ll-anyp]: _v2_) -> [ll-booleanp]
 ;;
 ;; TODO
 ;;
@@ -238,8 +232,7 @@
 ;; ====
 
 ;; ### type
-;; (**type** _v_) -> [ll-symbolp]
-;; - _v_ : [ll-anyp]
+;; (**type** [ll-anyp]: _v_) -> [ll-symbolp]
 ;;
 ;; TODO
 ;;
