@@ -769,8 +769,8 @@
 ;; `ll-foldl` passes parameters to _fn_ in the same order as Scheme does,
 ;; i.e. `(fn current-item accumulator)`.
 ;;
-;;     (ll-foldl cons '() '(1 2 3 4)) => (4 3 2 1)
-;;     (ll-foldl list '() '(1 2 3 4)) => (4 (3 (2 (1 NIL))))
+;;     (ll-foldl 'cons '() '(1 2 3 4)) => (4 3 2 1)
+;;     (ll-foldl 'list '() '(1 2 3 4)) => (4 (3 (2 (1 NIL))))
 ;;
 ;; See also `foldr`, `reduce`.
 (if *call:enable-preeval*
@@ -790,12 +790,13 @@
 ;; (**ll-foldr** [ll-functionp]: _fn_ [ll-anyp]: _init_ [listp]: _lst_) -> [listp]
 ;;
 ;; The fundamental list recursion iterator.
+;;
 ;; TODO
 ;;
 ;;     (ll-foldr 'cons '() '(1 2 3 4)) => (1 2 3 4)
 ;;     (ll-foldr 'list '() '(1 2 3 4)) => (1 (2 (3 (4 NIL)))
 ;;
-;; See also `foldl`, `reduce`.
+;; See also `ll-foldl`, `ll-reduce`.
 (defun ll-foldr (fn init lst)
   (ll-foldl fn init (reverse lst)))
 
