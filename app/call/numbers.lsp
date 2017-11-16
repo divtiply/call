@@ -14,7 +14,7 @@
 ;; --------------
 
 ;; ### ll-integerp
-;; > (**ll-integerp** [ll-anyp]: _v_) -> [ll-booleanp]
+;; (**ll-integerp** [ll-anyp]: _v_) -> [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ is an *integer*, `nil` otherwise.
 ;;
@@ -26,7 +26,7 @@
       (eq 'INT (type v))))
 
 ;; ### ll-realp
-;; > (**ll-realp** [ll-anyp]: _v_) -> [ll-booleanp]
+;; (**ll-realp** [ll-anyp]: _v_) -> [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ is a *real*, `nil` otherwise.
 ;;
@@ -38,7 +38,7 @@
     (eq 'REAL (type v))))
 
 ;; ### numberp
-;; > (**numberp** [ll-anyp] _v_) -> [ll-booleanp]
+;; (**numberp** [ll-anyp] _v_) -> [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ is a *number* (either *integer* or *real*), `nil`
 ;; otherwise.
@@ -48,7 +48,7 @@
 ;; AutoLISP built-in.
 
 ;; ### ll-natnump
-;; > (**ll-natnump** [ll-anyp]: _v_) -> [ll-booleanp]
+;; (**ll-natnump** [ll-anyp]: _v_) -> [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ is a non-negative *integer*, `nil` otherwise.
 ;;
@@ -58,35 +58,35 @@
        (not (minusp v))))
 
 ;; ### zerop
-;; > (**zerop** [numberp]: _z_) -> [ll-booleanp]
+;; (**zerop** [numberp]: _z_) -> [ll-booleanp]
 ;;
 ;; Returns `t` if _z_ is zero, `nil` otherwise.
 ;;
 ;; AutoLISP built-in.
 
 ;; ### minusp
-;; > (**minusp** [numberp]: _z_) -> [ll-booleanp]
+;; (**minusp** [numberp]: _z_) -> [ll-booleanp]
 ;;
 ;; Returns `t` if _z_ is less than zero, `nil` otherwise.
 ;;
 ;; AutoLISP built-in.
 
 ;; ### ll-plusp
-;; > (**ll-plusp** [numberp]: _z_) -> [ll-booleanp]
+;; (**ll-plusp** [numberp]: _z_) -> [ll-booleanp]
 ;;
 ;; Returns `t` if _z_ is greater than zero, `nil` otherwise.
 (defun ll-plusp (z)
   (not (or (zerop z) (minusp z))))
 
 ;; ### ll-oddp
-;; > (**ll-oddp** [ll-integerp]: _i_) -> [ll-booleanp]
+;; (**ll-oddp** [ll-integerp]: _i_) -> [ll-booleanp]
 ;;
 ;; Returns `t` if _i_ is odd, `nil` otherwise.
 (defun ll-oddp (i)
   (not (zerop (logand i 1))))
 
 ;; ### ll-evenp
-;; > (**ll-evenp** [ll-integerp]: _i_) -> [ll-booleanp]
+;; (**ll-evenp** [ll-integerp]: _i_) -> [ll-booleanp]
 ;;
 ;; Returns `t` if _i_ is even, `nil` otherwise.
 (defun ll-evenp (i)
@@ -97,14 +97,14 @@
 ;; --------------
 
 ;; ### float
-;; > (**float** [numberp]: _z_) -> [ll-realp]
+;; (**float** [numberp]: _z_) -> [ll-realp]
 ;;
 ;; Converts _z_ to a *real*.
 ;;
 ;; AutoLISP built-in.
 
 ;; ### fix
-;; > (**fix** [numberp]: _z_) -> [ll-integerp]
+;; (**fix** [numberp]: _z_) -> [ll-integerp]
 ;;
 ;; Converts _z_ to an *integer* by discarding fractional part.
 ;;
@@ -118,35 +118,35 @@
 ;; -------------
 
 ;; ### + {#sum}
-;; > (**+** [numberp]: _z_ ...) -> [numberp]
+;; (**+** [numberp]: _z_ ...) -> [numberp]
 ;;
 ;; Returns the sum of its arguments.
 ;;
 ;; AutoLISP built-in.
 
 ;; ### - {#difference}
-;; > (**-** [numberp]: _z_ ...) -> [numberp]
+;; (**-** [numberp]: _z_ ...) -> [numberp]
 ;;
 ;; Returns its first argument minus the rest of its arguments.
 ;;
 ;; AutoLISP built-in.
 
 ;; ### * {#product}
-;; > (***** [numberp]: _z_ ...) -> [numberp]
+;; (***** [numberp]: _z_ ...) -> [numberp]
 ;;
 ;; Returns the product of its arguments.
 ;;
 ;; AutoLISP built-in.
 
 ;; ### / {#division}
-;; > (**/** [numberp]: _z_ ...) -> [numberp]
+;; (**/** [numberp]: _z_ ...) -> [numberp]
 ;;
 ;; Returns its first argument divided by the rest of its arguments.
 ;;
 ;; AutoLISP built-in.
 
 ;; ### 1+ {#increment}
-;; > (**1+** [numberp]: _z_) -> [numberp]
+;; (**1+** [numberp]: _z_) -> [numberp]
 ;;
 ;; Increments _z_ by 1.
 ;;
@@ -155,7 +155,7 @@
 ;; AutoLISP built-in.
 
 ;; ### 1- {#decrement}
-;; > (**1-** [numberp]: _z_) -> [numberp]
+;; (**1-** [numberp]: _z_) -> [numberp]
 ;;
 ;; Decrements _z_ by 1.
 ;;
@@ -207,7 +207,7 @@
   ;; https://keithmaggio.wordpress.com/2011/02/15/math-magician-lerp-slerp-and-nlerp/
 
 ;; ### rem
-;; > (**rem** [numberp]: _z_ [numberp]: _w_ ...) -> [numberp]
+;; (**rem** [numberp]: _z_ [numberp]: _w_ ...) -> [numberp]
 ;;
 ;; Returns the reminder from _z_ divided by _w_.
 ;;
@@ -216,7 +216,7 @@
 ;; AutoLISP built-in.
 
 ;; ### ll-mod
-;; > (**ll-mod** [numberp]: _z_ [numberp]: _w_) -> [numberp]
+;; (**ll-mod** [numberp]: _z_ [numberp]: _w_) -> [numberp]
 ;;
 ;; Returns the reminder from _z_ divided by _w_, with the same sign as _w_.
 ;;
@@ -230,7 +230,7 @@
       (rem (+ w (rem z w)) w)))
 
 ;; ### ll-quot
-;; > (**ll-quot** [numberp]: _z_ [numberp]: _w_) -> [numberp]
+;; (**ll-quot** [numberp]: _z_ [numberp]: _w_) -> [numberp]
 ;;
 ;; Returns the quotient from _z_ divided by _w_.
 ;;
@@ -616,7 +616,7 @@
   (log (+ z (sqrt (1- (* z z))))))
 
 ;; ### ll-atanh
-;; > (**ll-atanh** [numberp]: _z_) -> [ll-realp]
+;; (**ll-atanh** [numberp]: _z_) -> [ll-realp]
 ;;
 ;; Returns the hyperbolic area tangent of _z_.
 ;;

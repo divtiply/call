@@ -12,7 +12,7 @@
 (or ll-features (progn ; include guard
 
 ;; ### ll-features
-;; > [listp]: _ll-features_
+;; [listp]: _ll-features_
 ;;
 ;; TODO
 
@@ -23,7 +23,7 @@
   feature)
 
 ;; ### ll-featurep
-;; > (**ll-featurep** [ll-stringp]: _feature_) -> [ll-boolean]
+;; (**ll-featurep** [ll-stringp]: _feature_) -> [ll-boolean]
 ;;
 ;; TODO
 (defun ll-featurep (feature)
@@ -32,7 +32,7 @@
   (and (member (ll--feature-normalize feature) ll-features)))
 
 ;; ### ll-provide
-;; > (**ll-provide** [ll-stringp]: _feature_) -> [listp]
+;; (**ll-provide** [ll-stringp]: _feature_) -> [listp]
 ;;
 ;; TODO
 (defun ll-provide (feature)
@@ -40,7 +40,7 @@
       (setq ll-features (cons (ll--feature-normalize feature) ll-features))))
 
 ;; ### ll-require
-;; > (**ll-require** [ll-stringp]: _feature_) -> [ll-anyp]
+;; (**ll-require** [ll-stringp]: _feature_) -> [ll-anyp]
 ;;
 ;; TODO
 (defun ll-require (feature)
