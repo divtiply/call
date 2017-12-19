@@ -6,8 +6,15 @@
 ;; Released under the MIT license
 
 
-;; ## Evaluation
-;; -------------
+;; ## Reading and Evaluating
+;; -------------------------
+
+;; ### read
+;; (**read** _s_: [ll-stringp])
+;;
+;; TODO
+;;
+;; AutoLISP built-in.
 
 ;; ### eval
 ;; (**eval** _expr_)
@@ -15,6 +22,24 @@
 ;; TODO
 ;;
 ;; AutoLISP built-in.
+
+;; ### apply
+;; (**apply** _fn_ _lst_): [ll-anyp]
+;;
+;; TODO
+;;
+;; AutoLISP built-in.
+
+;; ### load
+;; (**load** _filename_ _onfailure_)
+;;
+;; TODO
+;;
+;; AutoLISP built-in.
+
+
+;; ##
+;; --
 
 ;; ### quote
 ;; (**quote** _expr_)
@@ -42,13 +67,6 @@
 ;;;
 ;; TODO
 ;;;
-;; AutoLISP built-in.
-
-;; ### apply
-;; (**apply** _fn_ _lst_): [ll-anyp]
-;;
-;; TODO
-;;
 ;; AutoLISP built-in.
 
 ;; ### defun
@@ -106,14 +124,14 @@
 ;; AutoLISP built-in.
 
 ;; ### ll-nand
-;; (**ll-nand** _v1_: [ll-anyp] _v2_: [ll-anyp]]): [ll-booleanp]
+;; (**ll-nand** _v1_: [ll-anyp] _v2_: [ll-anyp]): [ll-booleanp]
 ;;
 ;; TODO
 (defun ll-nand (v1 v2)
   (not (and v1 v2)))
 
 ;; ### ll-nor
-;; (**ll-nor** _v1_: [ll-anyp] _v2_: [ll-anyp]]): [ll-booleanp]
+;; (**ll-nor** _v1_: [ll-anyp] _v2_: [ll-anyp]): [ll-booleanp]
 ;;
 ;; TODO
 (defun ll-nor (v1 v2)
@@ -146,7 +164,7 @@
 ;; ------------
 
 ;; ### repeat
-;; (**repeat** [ll-integerp]: n ...): [ll-anyp]
+;; (**repeat** _n_: [ll-integerp] ...): [ll-anyp]
 ;;
 ;; TODO
 ;;
@@ -260,12 +278,15 @@
 ;; Exports
 '(
   ;;
+  ;; read
   ;; eval
+  ;; apply
+  ;; load
+  ;;
   ;; quote
   ;; setq
   ;; lambda
   ;; function
-  ;; apply
   ;; defun
   ;; defun-q
   ll-functionp
