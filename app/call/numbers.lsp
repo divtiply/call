@@ -704,7 +704,7 @@
   ;; + - * / 1+ 1-
   ;; abs
   ;; min max
-  ll-clamp
+  ll-clamp ll-lerp
   ;; rem
   ll-mod ll-quot
   ll-frac
