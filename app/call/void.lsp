@@ -10,7 +10,7 @@
 ;; ======================
 
 ;; ### ll-void
-;; [ll-voidp]: **ll-void**
+;; **ll-void**: [ll-voidp]
 ;;
 ;; Contains *void* value.
 (setq
@@ -23,7 +23,7 @@
   ll-void (princ))
 
 ;; ### ll-voidp
-;; (**ll-voidp** [ll-anyp]: _v_) -> [ll-booleanp]
+;; (**ll-voidp** _v_: [ll-anyp]): [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ is a *void*, `nil` otherwise.
 (defun ll-voidp (v)

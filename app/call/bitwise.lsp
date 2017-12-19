@@ -15,14 +15,14 @@
 ;; ====================
 
 ;; ### ~ {bitwise-not}
-;; (**~** [ll-integerp]: _i_) -> [ll-integerp]
+;; (**~** _i_: [ll-integerp]): [ll-integerp]
 ;;
 ;; Returns the bitwise NOT (1's complement) of _i_.
 ;;
 ;; AutoLISP built-in.
 
 ;; ### lsh
-;; (**lsh** [ll-integerp]: _k_ [ll-integerp]: _i_) -> [ll-integerp]
+;; (**lsh** _k_: [ll-integerp] _i_: [ll-integerp]): [ll-integerp]
 ;;
 ;; Returns the logical bitwise shift of _k_ to the left _i_ bits, or to the
 ;; right if _i_ is negative.
@@ -32,21 +32,21 @@
 ;; TODO: ll-ash
 
 ;; ### logand
-;; (**logand** [ll-integerp]: _i1_ [ll-integerp]: _i2_ ...) -> [ll-integerp]
+;; (**logand** _i1_: [ll-integerp] _i2_: [ll-integerp] ...): [ll-integerp]
 ;;
 ;; Returns the result of the logical bitwise AND of its arfuments.
 ;;
 ;; AutoLISP built-in.
 
 ;; ### logior
-;; (**logior** [ll-integerp]: _i1_ [ll-integerp]: _i2_ ...) -> [ll-integerp]
+;; (**logior** _i1_: [ll-integerp] _i2_: [ll-integerp] ...): [ll-integerp]
 ;;
 ;; Returns the result of the logical bitwise inclusive OR of its arfuments.
 ;;
 ;; AutoLISP built-in.
 
 ;; ### boole
-;; (**boole** [ll-integerp]: _op_ [ll-integerp]: _i1_ [ll-integerp]: _i2_ ...) -> [ll-integerp]
+;; (**boole** _op_: [ll-integerp] _i1_: [ll-integerp] _i2_: [ll-integerp] ...): [ll-integerp]
 ;;
 ;; TODO
 ;;

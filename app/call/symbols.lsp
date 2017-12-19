@@ -10,21 +10,21 @@
 ;; =========
 
 ;; ### set
-;; (**set** [ll-integerp] _sym_ [ll-anyp]: _v_) -> [ll-anyp]
+;; (**set** _sym_: [ll-integerp] _v_: [ll-anyp]): [ll-anyp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### boundp
-;; (**boundp** [ll-symbolp]: _sym_) -> [ll-booleanp]
+;; (**boundp** _sym_: [ll-symbolp]): [ll-booleanp]
 ;;
 ;; Returns `t` if _sym_ has a value bound to it, `nil` otherwise.
 ;;
 ;; AutoLISP built-in.
 
 ;; ### ll-symbolp
-;; (**ll-symbolp** [ll-anyp]: _v_) -> [ll-booleanp]
+;; (**ll-symbolp** _v_: [ll-anyp]): [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ is a *symbol*, `nil` otherwise.
 ;;
@@ -35,7 +35,7 @@
     (eq 'SYM (type v))))
 
 ;; ### ll-symbol-value
-;; (**ll-symbol-value** [ll-symbolp]: _sym_) -> [ll-anyp]
+;; (**ll-symbol-value** _sym_: [ll-symbolp]): [ll-anyp]
 ;;
 ;; TODO
 ;;
@@ -48,7 +48,7 @@
       (eval sym)))
 
 ;; ### ll-symbol-name
-;; (**ll-symbol-name** [ll-symbolp]: _sym_) -> [ll-stringp]
+;; (**ll-symbol-name** _sym_: [ll-symbolp]): [ll-stringp]
 ;;
 ;; TODO
 ;;
@@ -75,7 +75,8 @@
       (car names)))
 
 ;; ### atoms-family
-;; (**atoms-family** [ll-integerp]: _form_ [[listp]: _syms_]) -> [listp]
+;; (**atoms-family** _form_: [ll-integerp]): [listp]
+;; (**atoms-family** _form_: [ll-integerp] _syms_: [listp]): [listp]
 ;;
 ;; Returns a list of the currently defined symbols.
 ;;

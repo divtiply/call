@@ -14,7 +14,7 @@
 ;; -------------------
 
 ;; ### atom
-;; (**atom** [ll-anyp]: _v_) -> [ll-booleanp]
+;; (**atom** _v_: [ll-anyp]): [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ is an *atom*, `nil` otherwise.
 ;;
@@ -24,7 +24,7 @@
 ;; AutoLISP built-in.
 
 ;; ### null
-;; (**null** [ll-anyp]: _v_) -> [ll-booleanp]
+;; (**null** _v_: [ll-anyp]): [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ is `nil`, `nil` otherwise.
 ;;
@@ -35,7 +35,7 @@
 ;; AutoLISP built-in.
 
 ;; ### ll-consp
-;; (**ll-consp** [ll-anyp]: _v_) -> [ll-booleanp]
+;; (**ll-consp** _v_: [ll-anyp]): [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ is a *cons* cell, `nil` otherwise.
 ;;
@@ -53,7 +53,7 @@
       (not (atom v)))) ; (eq 'LIST (type v))
 
 ;; ### listp
-;; (**listp** [ll-anyp]: _v_) -> [ll-booleanp]
+;; (**listp** _v_: [ll-anyp]): [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ is a *cons* cell or `nil`, `nil` otherwise.
 ;;
@@ -63,7 +63,7 @@
 ;; AutoLISP built-in.
 
 ;; ### ll-endp
-;; (**ll-endp** [listp]: _lst_) -> [ll-booleanp]
+;; (**ll-endp** _lst_: [listp]): [ll-booleanp]
 ;;
 ;; Like `null`, but signals an error if _lst_ is not a *list*.
 (defun ll-endp (lst)
@@ -75,7 +75,7 @@
 ;; --------------------
 
 ;; ### cons
-;; (**cons** [ll-anyp]: _a_ [ll-anyp]: _d_) -> [ll-consp]
+;; (**cons** _a_: [ll-anyp] _d_: [ll-anyp]): [ll-consp]
 ;;
 ;; Returns a newly allocated *cons* cell whose first element is _a_ and second
 ;; element is _d_.
@@ -86,7 +86,7 @@
 ;; AutoLISP built-in.
 
 ;; ### list
-;; (**list** [ll-anyp]: _v_ ...) -> [listp]
+;; (**list** _v_: [ll-anyp] ...): [listp]
 ;;
 ;; Returns a newly allocated list containing the _v_s as its elements.
 ;;
@@ -97,7 +97,7 @@
 ;; AutoLISP built-in.
 
 ;; ### ll-make-list
-;; (**ll-make-list** [ll-natnump]: _n_ [ll-anyp]: _v_) -> [listp]
+;; (**ll-make-list** _n_: [ll-natnump] _v_: [ll-anyp]): [listp]
 ;;
 ;; Returns a list of _n_ elements, in wich each element is _v_.
 ;;
@@ -108,7 +108,7 @@
     (setq lst (cons v lst))))
 
 ;; ### ll-iota
-;; > (**ll-iota** [ll-natnump]: _n_) -> [listp]
+;; > (**ll-iota** _n_: [ll-natnump]): [listp]
 ;;
 ;; TODO
 (defun ll-iota (n / lst)
@@ -131,7 +131,7 @@
 ;; -----------------
 
 ;; ### car
-;; (**car** [ll-consp]: _p_) -> [ll-anyp]
+;; (**car** _p_: [ll-consp]): [ll-anyp]
 ;;
 ;; Returns the value referred to by the first slot of the cons cell _p_.
 ;; In other words, it returns the car of _p_.
@@ -146,7 +146,7 @@
 ;; AutoLISP built-in.
 
 ;; ### cdr
-;; (**cdr** [ll-consp]: _p_) -> [ll-anyp]
+;; (**cdr** _p_: [ll-consp]): [ll-anyp]
 ;;
 ;; Returns the value referred to by the second slot of the cons cell _p_.
 ;; In other words, it returns the cdr of _p_.
@@ -161,14 +161,14 @@
 ;; AutoLISP built-in.
 
 ;; ### caar, cadr, cdar, cddr, ..., cddddr
-;; (**cddddr** [ll-consp]: _p_) -> [ll-anyp]
+;; (**cddddr** _p_: [ll-consp]): [ll-anyp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### ll-first {#ll-first}{#ll-second}{#ll-third}{#ll-fourth}{#ll-fifth}{#ll-sixth}{#ll-seventh}{#ll-eighth}{#ll-ninth}{#ll-tenth}
-;; (**ll-first** [listp]: _lst_) -> [ll-anyp]
+;; (**ll-first** _lst_: [listp]): [ll-anyp]
 ;;
 ;; Alias for `car`.
 ;;
@@ -208,13 +208,13 @@
       ))
 
 ;; ### ll-rest
-;; (**ll-rest** [listp]: _lst_) -> [ll-anyp]
+;; (**ll-rest** _lst_: [listp]): [ll-anyp]
 ;;
 ;; Alias for `cdr`.
 (setq ll-rest cdr)
 
 ;; ### last
-;; (**last** [listp]: _lst_) -> [ll-anyp]
+;; (**last** _lst_: [listp]): [ll-anyp]
 ;;
 ;; Returns the last element of _lst_.
 ;;
@@ -225,7 +225,7 @@
 ;; AutoLISP built-in.
 
 ;; ### nth
-;; (**nth** [ll-natnump]: _n_ [listp]: _lst_) -> [ll-anyp]
+;; (**nth** _n_: [ll-natnump] _lst_: [listp]): [ll-anyp]
 ;;
 ;; Returns the _n_-th element of _lst_.
 ;;
@@ -239,7 +239,7 @@
 ;; AutoLISP built-in.
 
 ;; ### ll-nthcdr
-;; (**ll-nthcdr** [ll-natnump]: _n_ [listp]: _lst_) -> [ll-anyp]
+;; (**ll-nthcdr** _n_: [ll-natnump] _lst_: [listp]): [ll-anyp]
 ;;
 ;; Returns the _n_-th cdr of _lst_. In other words, it skips past the first
 ;; _n_ links of list and returns what follows.
@@ -262,7 +262,7 @@
       lst))
 
 ;; ### ll-firstn
-;; (**ll-firstn** [listp]: _lst_ [ll-natnump]: _n_) -> [listp]
+;; (**ll-firstn** _lst_: [listp] _n_: [ll-natnump]): [listp]
 ;;
 ;; Returns first _n_ elements of _lst_.
 ;;
@@ -281,7 +281,7 @@
       (reverse out)))
 
 ;; ### ll-butlast
-;; (**ll-butlast** [listp]: _lst_) -> [listp]
+;; (**ll-butlast** _lst_: [listp]): [listp]
 ;;
 ;; Returns a copy of _lst_ with the last element removed.
 ;;
@@ -293,7 +293,7 @@
       (reverse (cdr (reverse lst)))))
 
 ;; ### ll-butlastn
-;; (**ll-butlastn** [listp]: _lst_ [ll-natnump]: _n_) -> [listp]
+;; (**ll-butlastn** _lst_: [listp] _n_: [ll-natnump]): [listp]
 ;;
 ;; Returns a copy of _lst_ with the last _n_ elements removed.
 ;;
@@ -309,7 +309,7 @@
       (reverse (ll-nthcdr n (reverse lst)))))
 
 ;; ### ll-last-cons
-;; (**ll-last-cons** [listp]: _lst_) -> [ll-consp]
+;; (**ll-last-cons** _lst_: [listp]): [ll-consp]
 ;;
 ;; Returns the last cons of _lst_.
 ;;
@@ -322,7 +322,7 @@
   lst)
 
 ;; ### ll-lastn
-;; (**ll-lastn** [listp]: _lst_ [ll-natnump]: _n_) -> [listp]
+;; (**ll-lastn** _lst_: [listp] _n_: [ll-natnump]): [listp]
 ;;
 ;; Returns the last _n_ conses (not the last _n_ elements) of _lst_.
 ;;
@@ -354,7 +354,7 @@
     ;;   out)
 
 ;; ### ll-sublist
-;; (**ll-sublist** [listp]: _lst_ [ll-natnump]: _start_ [ll-natnump]: _len_) -> [listp]
+;; (**ll-sublist** _lst_: [listp] _start_: [ll-natnump] _len_: [ll-natnump]): [listp]
 ;;
 ;; TODO: Returns the sublist of _lst_ starting with item at position _start_.
 ;; TODO: If _len_ <= 0 process to end of the list.
@@ -371,7 +371,7 @@
           (ll-nthcdr start lst))))
 
 ;; ### ll-subseq
-;; (**ll-subseq** [listp]: _lst_ [ll-natnump]: _start_ [ll-natnump]: _end_) -> [listp]
+;; (**ll-subseq** _lst_: [listp] _start_: [ll-natnump] _end_: [ll-natnump]): [listp]
 ;;
 ;; TODO
 (defun ll-subseq (lst start end)
@@ -382,8 +382,8 @@
 ;; -----------------
 
 ;; ### ll-split-if {#ll-split-if}{#ll-split-if-not}
-;; (**ll-split-if** [ll-functionp]: _pred_ [listp]: _lst_) -> [listp]
-;; (**ll-split-if-not** [ll-functionp]: _pred_ [listp]: _lst_) -> [listp]
+;; (**ll-split-if** _pred_: [ll-functionp] _lst_: [listp]): [listp]
+;; (**ll-split-if-not** _pred_: [ll-functionp] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 (if *call:enable-preeval*
@@ -417,7 +417,7 @@
       (list (reverse out) lst))))
 
 ;; ### ll-split-at
-;; (**ll-split-at** [ll-natnump]: _n_ [listp]: _lst_) -> [listp]
+;; (**ll-split-at** _n_: [ll-natnump] _lst_: [listp]): [listp]
 ;;
 ;; Returns a list of two sublists, where first sublist is first _n_ elements of
 ;; _lst_, and second sublist is the remaining elements.
@@ -448,7 +448,7 @@
       (list (reverse out) lst)))
 
 ;; ### ll-split-at-first
-;; (**ll-split-at-first** [ll-anyp]: _v_ [listp]: _lst_) -> [listp]
+;; (**ll-split-at-first** _v_: [ll-anyp] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
@@ -466,7 +466,7 @@
       (list (reverse out) lst)))
 
 ;; ### ll-split-at-last
-;; (**ll-split-at-last** [ll-anyp]: _v_ [listp]: _lst_) -> [listp]
+;; (**ll-split-at-last** _v_: [ll-anyp] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 (defun ll-split-at-last (v lst / in out)
@@ -481,7 +481,7 @@
       (list lst)))
 
 ;; ### ll-partition
-;; (**ll-partition** [ll-natnump]: _n_ [listp]: _lst_) -> [listp]
+;; (**ll-partition** _n_: [ll-natnump] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
@@ -491,7 +491,7 @@
   (*error* "ll-partition: Function not implemented")) ;--- TODO
 
 ;; ### ll-partition-all
-;; (**ll-partition-all** [ll-natnump]: _n_ [listp]: _lst_) -> [listp]
+;; (**ll-partition-all** _n_: [ll-natnump] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
@@ -501,7 +501,7 @@
   (*error* "ll-partition-all: Function not implemented")) ;--- TODO
 
 ;; ### ll-separate
-;; (**ll-separate** [ll-functionp]: _pred_ [listp]: _lst_) -> [listp]
+;; (**ll-separate** _pred_: [ll-functionp] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
@@ -527,7 +527,7 @@
 ;; ------------------
 
 ;; ### length
-;; (**length** [listp]: _lst_) -> [natump]
+;; (**length** _lst_: [listp]): [natump]
 ;;
 ;; Returns the number of elements in _lst_.
 ;;
@@ -539,7 +539,7 @@
 ;; AutoLISP built-in.
 
 ;; ### ll-list-length
-;; (ll-list-length [listp]: _lst_) -> (or [ll-natnump] [null])
+;; (ll-list-length _lst_: [listp]) -> (or [ll-natnump] [null])
 ;;
 ;; Returns the length of _lst_, exactly like `length`, except that if _lst_
 ;; is an improper list, `nil` is returned.
@@ -557,7 +557,7 @@
           len)))
 
 ;; ### reverse
-;; (**reverse** [listp]: _lst_) -> [listp]
+;; (**reverse** _lst_: [listp]): [listp]
 ;;
 ;; Returns a list that has the same elements as _lst_, but in reverse order.
 ;;
@@ -566,7 +566,7 @@
 ;; AutoLISP built-in.
 
 ;; ### append
-;; (**append** [listp]: _lst_ ...) -> [listp]
+;; (**append** _lst_: [listp] ...): [listp]
 ;;
 ;; Returns a list that contains all of the elements of the given lists in
 ;; order.
@@ -578,7 +578,7 @@
 ;; AutoLISP built-in.
 
 ;; ### ll-revappend
-;; (**ll-revappend** [listp]: _lst_ [ll-anyp]: _v_) -> [listp]
+;; (**ll-revappend** _lst_: [listp] _v_: [ll-anyp]): [listp]
 ;;
 ;; TODO
 ;; If v is a list then (ll-revappend lst v) == (append (reverse lst) v)
@@ -596,7 +596,7 @@
   v)
 
 ;; ### ll-copy-list
-;; (*ll-copy-list* [listp]: _lst_)
+;; (*ll-copy-list* _lst_: [listp])
 ;;
 ;; TODO
 (defun ll-copy-list (lst)
@@ -612,7 +612,7 @@
 ;; TODO: copy-alist
 
 ;; ### ll-copy-tree
-;; (*ll-copy-tree* [listp]: _lst_)
+;; (*ll-copy-tree* _lst_: [listp])
 ;;
 ;; TODO
 (defun ll-copy-tree (tr)
@@ -624,7 +624,7 @@
         (ll-copy-tree (cdr tr)))))
 
 ;; ### ll-count
-;; (**ll-count** [ll-anyp]: _v_ [listp]: _lst_) -> [ll-natnump]
+;; (**ll-count** _v_: [ll-anyp] _lst_: [listp]): [ll-natnump]
 ;;
 ;; Returns the number of elements of _lst_ which match _v_.
 (defun ll-count (v lst / n)
@@ -635,8 +635,8 @@
   n)
 
 ;; ### ll-count-if {#ll-count-if}{#ll-count-if-not}
-;; (**ll-count-if** [ll-functionp]: _pred_ [listp]: _lst_) -> [ll-natnump]
-;; (**ll-count-if-not** [ll-functionp]: _pred_ [listp]: _lst_) -> [ll-natnump]
+;; (**ll-count-if** _pred_: [ll-functionp] _lst_: [listp]): [ll-natnump]
+;; (**ll-count-if-not** _pred_: [ll-functionp] _lst_: [listp]): [ll-natnump]
 ;;
 ;; TODO
 (if *call:enable-preeval*
@@ -673,14 +673,14 @@
 ;; -----------------
 
 ;; ### mapcar
-;; (**mapcar** [ll-functionp]: _fn_ [listp]: _lst_ ...) -> [listp]
+;; (**mapcar** _fn_: [ll-functionp] _lst_: [listp] ...): [listp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### ll-maplist
-;; (**ll-maplist** [ll-functionp]: _fn_ [listp]: _lst_) -> [listp]
+;; (**ll-maplist** _fn_: [ll-functionp] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 (if *call:enable-preeval*
@@ -699,7 +699,7 @@
       (reverse out)))
 
 ;; ### ll-maptree
-;; (**ll-maptree** [ll-functionp]: _fn_ [listp]: _tree_) -> [listp]
+;; (**ll-maptree** _fn_: [ll-functionp] _tree_: [listp]): [listp]
 ;;
 ;; TODO
 ; FIXME: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -734,7 +734,7 @@
      out)))
 
 ;; ### ll-some
-;; (**ll-some** [ll-functionp]: _pred_ [listp]: _lst_) -> [ll-booleanp]
+;; (**ll-some** _pred_: [ll-functionp] _lst_: [listp]): [ll-booleanp]
 ;;
 ;; TODO
 ;;
@@ -748,7 +748,7 @@
       (and (ll-member-if pred lst))))
 
 ;; ### ll-every
-;; (**ll-every** [ll-functionp]: _pred_ [listp]: _lst_) -> [ll-booleanp]
+;; (**ll-every** _pred_: [ll-functionp] _lst_: [listp]): [ll-booleanp]
 ;;
 ;; TODO
 ;;
@@ -762,7 +762,7 @@
       (not (ll-member-if-not pred lst))))
 
 ;; ### ll-foldl
-;; (**ll-foldl** [ll-functionp]: _fn_ [ll-anyp]: _init_ [listp]: _lst_) -> [listp]
+;; (**ll-foldl** _fn_: [ll-functionp] _init_: [ll-anyp] _lst_: [listp]): [listp]
 ;;
 ;; The fundamental list iterator.
 ;; TODO
@@ -787,7 +787,7 @@
       init))
 
 ;; ### ll-foldr
-;; (**ll-foldr** [ll-functionp]: _fn_ [ll-anyp]: _init_ [listp]: _lst_) -> [listp]
+;; (**ll-foldr** _fn_: [ll-functionp] _init_: [ll-anyp] _lst_: [listp]): [listp]
 ;;
 ;; The fundamental list recursion iterator.
 ;;
@@ -801,9 +801,9 @@
   (ll-foldl fn init (reverse lst)))
 
 ;; ### ll-reduce {#ll-reduce}{#ll-reduce-from-end}{#ll-reduce-with-init}
-;; (**ll-reduce** [ll-functionp]: _fn_ [listp]: _lst_) -> [ll-anyp]
-;; (**ll-reduce-from-end** [ll-functionp]: _fn_ [listp]: _lst_) -> [ll-anyp]
-;; (**ll-reduce-with-init** [ll-functionp]: _fn_ [ll-anyp]: _init_ [listp]: _lst_) -> [ll-anyp]
+;; (**ll-reduce** _fn_: [ll-functionp] _lst_: [listp]): [ll-anyp]
+;; (**ll-reduce-from-end** _fn_: [ll-functionp] _lst_: [listp]): [ll-anyp]
+;; (**ll-reduce-with-init** _fn_: [ll-functionp] _init_: [ll-anyp] _lst_: [listp]): [ll-anyp]
 ;;
 ;; Combines the elements of _lst_ using an associative binary operation _fn_.
 ;;
@@ -867,15 +867,15 @@
 ;; -----------------
 
 ;; ### member
-;; (**member** [ll-anyp]: _v_ [listp]: _lst_) -> [listp]
+;; (**member** _v_: [ll-anyp] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### ll-member-if {#ll-member-if}{#ll-member-if-not}
-;; (**ll-member-if** [ll-functionp]: _pred_ [listp]: _lst_) -> [listp]
-;; (**ll-member-if-not** [ll-functionp]: _pred_ [listp]: _lst_) -> [listp]
+;; (**ll-member-if** _pred_: [ll-functionp] _lst_: [listp]): [listp]
+;; (**ll-member-if-not** _pred_: [ll-functionp] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
@@ -911,7 +911,7 @@
           lst)))
 
 ;; ### ll-position
-;; (**ll-position** [ll-anyp]: _v_ [listp]: _lst_) -> (or [ll-natnump] [null])
+;; (**ll-position** _v_: [ll-anyp] _lst_: [listp]) -> (or [ll-natnump] [null])
 ;;
 ;; TODO
 ;;
@@ -927,8 +927,8 @@
       (if lst n)))
 
 ;; ### ll-position-if {#ll-position-if}{#ll-position-if-not}
-;; (**ll-position-if** [ll-functionp]: _pred_ [listp]: _lst_) -> (or [ll-natnump] [null])
-;; (**ll-position-if-not** [ll-functionp]: _pred_ [listp]: _lst_) -> (or [ll-natnump] [null])
+;; (**ll-position-if** _pred_: [ll-functionp] _lst_: [listp]) -> (or [ll-natnump] [null])
+;; (**ll-position-if-not** _pred_: [ll-functionp] _lst_: [listp]) -> (or [ll-natnump] [null])
 ;;
 ;; TODO
 (if *call:enable-preeval*
@@ -966,7 +966,7 @@
       (if lst n))))
 
 ;; ### ll-inlistp
-;; (**ll-inlistp** [ll-anyp]: _v_ [listp]: _lst_) -> [ll-booleanp]
+;; (**ll-inlistp** _v_: [ll-anyp] _lst_: [listp]): [ll-booleanp]
 ;;
 ;; Returns `t` if item _v_ is present in the list _lst_.
 ;;
@@ -984,7 +984,7 @@
      (or (member v lst)))))
 
 ;; ### ll-mismatch
-;; (**ll-mismatch** [listp]: _lst1_ [listp]: _lst2_) -> (or [ll-natnump] [null])
+;; (**ll-mismatch** _lst1_: [listp] _lst2_: [listp]) -> (or [ll-natnump] [null])
 ;;
 ;; Compares _lst1_ and _lst2_. If they are the same length and the
 ;; corresponding elements match (according to `equal` function), it returns
@@ -1012,7 +1012,7 @@
 ;; -----------------
 
 ;; ### subst
-;; (**subst** [ll-anyp]: _new_ [ll-anyp]: _old_ [listp]: _lst_) -> [listp]
+;; (**subst** _new_: [ll-anyp] _old_: [ll-anyp] _lst_: [listp]): [listp]
 ;;
 ;; Returns a list, with _new_ item replacing all occurrences of _old_ item.
 ;;
@@ -1024,7 +1024,7 @@
 ;; AutoLISP built-in.
 
 ;; ### ll-subst-nth
-;; (**ll-subst-nth** [ll-anyp]: _new_ [ll-natnump]: _n_ [listp]: _lst_) -> [listp]
+;; (**ll-subst-nth** _new_: [ll-anyp] _n_: [ll-natnump] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
@@ -1040,7 +1040,7 @@
           (car lst))))
 
 ;; ### ll-subst-first
-;; (**ll-subst-first** [ll-anyp]: _new_ [ll-anyp]: _old_ [listp]: _lst_) -> [listp]
+;; (**ll-subst-first** _new_: [ll-anyp] _old_: [ll-anyp] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 (if (and (not (or *call:ignore-lispex*
@@ -1058,7 +1058,7 @@
           (car lst))))
 
 ;; ### ll-subst-last
-;; (**ll-subst-last** _new_ [ll-anyp]: _old_ [listp]: _lst_) -> [listp]
+;; (**ll-subst-last** _new_ _old_: [ll-anyp] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
@@ -1070,8 +1070,8 @@
       (car lst)))
 
 ;; ### ll-subst-if {#ll-subst-if}{#ll-subst-if-not}
-;; (**ll-subst-if** [ll-anyp]: _new_ [ll-functionp]: _pred_ [listp]: _lst_) -> [listp]
-;; (**ll-subst-if-not** [ll-anyp]: _new_ [ll-functionp]: _pred_ [listp]: _lst_) -> [listp]
+;; (**ll-subst-if** _new_: [ll-anyp] _pred_: [ll-functionp] _lst_: [listp]): [listp]
+;; (**ll-subst-if-not** _new_: [ll-anyp] _pred_: [ll-functionp] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 (if *call:enable-preeval*
@@ -1093,7 +1093,7 @@
                 lst))))
 
 ;; ### ll-substree
-;; (**ll-substree** [ll-anyp]: _new_ [ll-anyp]: _old_ [listp]: _tree_) -> [listp]
+;; (**ll-substree** _new_: [ll-anyp] _old_: [ll-anyp] _tree_: [listp]): [listp]
 ;;
 ;; TODO
 (defun ll-substree (new old tree)
@@ -1104,7 +1104,7 @@
                  (ll-substree new old (cdr tree))))))
 
 ;; ### ll-sublis
-;; (**ll-sublis** [listp]: _alist_ [listp]: _tree_) -> [listp]
+;; (**ll-sublis** _alist_: [listp] _tree_: [listp]): [listp]
 ;;
 ;; Like [`ll-substree`](#ll-substree), except that it takes an association list
 ;; _alist_ of old-new pairs. Each element of _tree_ is compared with the cars of
@@ -1116,7 +1116,7 @@
     tree))
 
 ;; ### ll-flatten
-;; (**ll-flatten** [listp]: _lst_) -> [listp]
+;; (**ll-flatten** _lst_: [listp]): [listp]
 ;;
 ;; TODO
 (defun ll-flatten (lst / out cur)
@@ -1139,7 +1139,7 @@
        (reverse out))))
 
 ;; ### ll-insert
-;; (**ll-insert** [ll-anyp]: _new_ [ll-natnump]: _n_ [listp]: _lst_) -> [listp]
+;; (**ll-insert** _new_: [ll-anyp] _n_: [ll-natnump] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 (defun ll-insert (new n lst)
@@ -1147,7 +1147,7 @@
   (append (car lst) (cons new (cadr lst))))
 
 ;; ### ll-remove
-;; (**ll-remove** [ll-anyp]: _v_ [listp]: _lst_) -> [listp]
+;; (**ll-remove** _v_: [ll-anyp] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
@@ -1160,8 +1160,8 @@
              (subst nil (list v) (mapcar (function list) lst)))))
 
 ;; ### ll-remove-if {ll-remove-if}{ll-remove-if-not}
-;; (**ll-remove-if** [ll-functionp]: _pred_ [listp]: _lst_) -> [listp]
-;; (**ll-remove-if-not** [ll-functionp]: _pred_ [listp]: _lst_) -> [listp]
+;; (**ll-remove-if** _pred_: [ll-functionp] _lst_: [listp]): [listp]
+;; (**ll-remove-if-not** _pred_: [ll-functionp] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
@@ -1207,7 +1207,7 @@
                          lst)))))
 
 ;; ### ll-remove-nth
-;; (**ll-remove-nth** [ll-natnump]: _n_ [listp]: _lst_) -> [listp]
+;; (**ll-remove-nth** _n_: [ll-natnump] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
@@ -1220,7 +1220,7 @@
       (append (car lst) (cdadr lst))))
 
 ;; ### ll-remove-first
-;; (**ll-remove-first** [ll-anyp]: _v_ [listp]: _lst_) -> [listp]
+;; (**ll-remove-first** _v_: [ll-anyp] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
@@ -1233,7 +1233,7 @@
       (append (car lst) (cdadr lst))))
 
 ;; ### ll-remove-last
-;; (**ll-remove-last** [ll-anyp]: _v_ [listp]: _lst_) -> [listp]
+;; (**ll-remove-last** _v_: [ll-anyp] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 (defun ll-remove-last (v lst)
@@ -1241,7 +1241,7 @@
   (append (car lst) (cdadr lst)))
 
 ;; ### ll-remove-duplicates
-;; (**ll-remove-duplicates** [listp]: _lst_) -> [listp]
+;; (**ll-remove-duplicates** _lst_: [listp]): [listp]
 ;;
 ;; TODO
 (defun ll-remove-duplicates (lst / out)
@@ -1253,7 +1253,7 @@
   (reverse out))
 
 ;; ### ll-remove-adjacent-duplicates
-;; (**ll-remove-adjacent-duplicates** [listp]: _lst_) -> [listp]
+;; (**ll-remove-adjacent-duplicates** _lst_: [listp]): [listp]
 ;;
 ;; TODO (faster then remove-duplicates on some (e.g. sorted) lists)
 (defun ll-remove-adjacent-duplicates (lst / out)
@@ -1268,7 +1268,7 @@
 ;; --------------------
 
 ;; ### ll-tailp
-;; (**ll-tailp** [ll-anyp]: _v_ [listp]: _lst_) -> [ll-booleanp]
+;; (**ll-tailp** _v_: [ll-anyp] _lst_: [listp]): [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ is the same as some tail of _lst_, i.e., is `eq`
 ;; to _lst_ or to any of its cdrs.
@@ -1278,7 +1278,7 @@
   (eq v lst))
 
 ;; ### ll-ldiff
-;; (**ll-ldiff** [ll-anyp]: _lst_ [listp]: _v_) -> [listp]
+;; (**ll-ldiff** _lst_: [ll-anyp] _v_: [listp]): [listp]
 ;;
 ;; Returns a copy of a list up to a given cons cell.
 ;;

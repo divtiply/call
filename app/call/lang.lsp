@@ -24,14 +24,14 @@
 ;; AutoLISP built-in.
 
 ;; ### setq
-;; (**setq** [ll-symbolp]: [ll-anyp]: _sym_ _v_ ...) -> [ll-anyp]
+;; (**setq** [ll-symbolp]: _sym_: [ll-anyp] _v_ ...): [ll-anyp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### lambda
-;; (**lambda** ...) -> [ll-functionp]
+;; (**lambda** ...): [ll-functionp]
 ;;
 ;; TODO
 ;;
@@ -45,14 +45,14 @@
 ;; AutoLISP built-in.
 
 ;; ### apply
-;; (**apply** _fn_ _lst_) -> [ll-anyp]
+;; (**apply** _fn_ _lst_): [ll-anyp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### defun
-;; (**defun** ...) -> [ll-functionp]
+;; (**defun** ...): [ll-functionp]
 ;;
 ;; TODO
 ;;
@@ -62,7 +62,7 @@
 ;; TODO
 
 ;; ### ll-functionp
-;; (**ll-functionp** [ll-anyp]: _v_) -> [ll-booleanp]
+;; (**ll-functionp** _v_: [ll-anyp]): [ll-booleanp]
 ;;
 ;; TODO
 (defun ll-functionp (v)
@@ -85,49 +85,49 @@
 ;; AutoLISP built-in.
 
 ;; ### and
-;; (**and** [_v_ ...]) -> [ll-booleanp]
+;; (**and** [_v_ ...]): [ll-booleanp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### or
-;; (**or** [_v_ ...]) -> [ll-booleanp]
+;; (**or** [_v_ ...]): [ll-booleanp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### not
-;; (**not** [ll-anyp]: _v_) -> [ll-booleanp]
+;; (**not** _v_: [ll-anyp]): [ll-booleanp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### ll-nand
-;; (**ll-nand** [ll-anyp]: _v1_ [ll-anyp]: _v2_]) -> [ll-booleanp]
+;; (**ll-nand** _v1_: [ll-anyp] _v2_: [ll-anyp]]): [ll-booleanp]
 ;;
 ;; TODO
 (defun ll-nand (v1 v2)
   (not (and v1 v2)))
 
 ;; ### ll-nor
-;; (**ll-nor** [ll-anyp]: _v1_ [ll-anyp]: _v2_]) -> [ll-booleanp]
+;; (**ll-nor** _v1_: [ll-anyp] _v2_: [ll-anyp]]): [ll-booleanp]
 ;;
 ;; TODO
 (defun ll-nor (v1 v2)
   (not (or v1 v2)))
 
 ;; ### ll-xor
-;; (**ll-xor** [ll-anyp]: _v1_ [ll-anyp]: _v2_]) -> [ll-booleanp]
+;; (**ll-xor** _v1_: [ll-anyp] _v2_: [ll-anyp]]): [ll-booleanp]
 ;;
 ;; TODO
 (defun ll-xor (v1 v2)
   (not (eq (or v1) (or v2))))
 
 ;; ### progn
-;; (**progn** ...) -> [ll-anyp]
+;; (**progn** ...): [ll-anyp]
 ;;
 ;; TODO
 ;;
@@ -146,21 +146,21 @@
 ;; ------------
 
 ;; ### repeat
-;; (**repeat** [ll-integerp]: n ...) -> [ll-anyp]
+;; (**repeat** [ll-integerp]: n ...): [ll-anyp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### while
-;; (**while** ...) -> [ll-anyp]
+;; (**while** ...): [ll-anyp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### foreach
-;; (**foreach** [symbolp]: _sym_ [listp]: _lst_ ...) -> [ll-anyp]
+;; (**foreach** _sym_: [symbolp] _lst_: [listp] ...): [ll-anyp]
 ;;
 ;; TODO
 ;;
@@ -171,15 +171,15 @@
 ;; ---------------------------
 
 ;; ### equal
-;; (**equal** [ll-anyp]: _v1_ [ll-anyp]: _v2_) -> [ll-booleanp]
-;; (**equal** [ll-anyp]: _v1_ [ll-anyp]: _v2_ [numberp]: _fuzz_) -> [ll-booleanp]
+;; (**equal** _v1_: [ll-anyp] _v2_: [ll-anyp]): [ll-booleanp]
+;; (**equal** _v1_: [ll-anyp] _v2_: [ll-anyp] _fuzz_: [numberp]): [ll-booleanp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### eq
-;; (**eq** [ll-anyp]: _v1_ [ll-anyp]: _v2_) -> [ll-booleanp]
+;; (**eq** _v1_: [ll-anyp] _v2_: [ll-anyp]): [ll-booleanp]
 ;;
 ;; TODO
 ;;
@@ -193,35 +193,35 @@
 ;; AutoLISP built-in.
 
 ;; ### /= {#neq}
-;; (**/=** _v_ ...) -> [ll-booleanp]
+;; (**/=** _v_ ...): [ll-booleanp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### < {#lss}
-;; (**<**  _v_ ...) -> [ll-booleanp]
+;; (**<**  _v_ ...): [ll-booleanp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### <= {#leq}
-;; (**<=** _v_ ...) -> [ll-booleanp]
+;; (**<=** _v_ ...): [ll-booleanp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### > {#grt}
-;; (**>**  _v_ ...) -> [ll-booleanp]
+;; (**>**  _v_ ...): [ll-booleanp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### >= {#geq}
-;; (**>=** _v_ ...) -> [ll-booleanp]
+;; (**>=** _v_ ...): [ll-booleanp]
 ;;
 ;; TODO
 ;;
@@ -232,14 +232,14 @@
 ;; ====
 
 ;; ### type
-;; (**type** [ll-anyp]: _v_) -> [ll-symbolp]
+;; (**type** _v_: [ll-anyp]): [ll-symbolp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
 ;; ### ll-typep
-;; (**ll-typep** [ll-anyp]: _v_ [listp]: _typespec_) -> [ll-symbolp]
+;; (**ll-typep** _v_: [ll-anyp] _typespec_: [listp]): [ll-symbolp]
 ;;
 ;; TODO
 (defun ll-typep (v typespec) ; FIXME: read Common Lisp docs
@@ -248,7 +248,7 @@
     (eq (type v) typespec)))
 
 ;; ### ll-anyp
-;; (**ll-anyp** [ll-anyp]: _v_) -> t
+;; (**ll-anyp** _v_: [ll-anyp]) -> t
 ;;
 ;; Returns `t` for any type of LISP object.
 (defun ll-anyp (v)

@@ -27,7 +27,7 @@
      (or (member v lst)))))
 
 ;; ### ll-subsetp
-;; (**ll-subsetp** [listp]: _lst1_ [listp]: _lst2_) -> [ll-booleanp]
+;; (**ll-subsetp** _lst1_: [listp] _lst2_: [listp]): [ll-booleanp]
 ;;
 ;; TODO
 (defun ll-subsetp (lst1 lst2)
@@ -37,7 +37,7 @@
   (null lst1))
 
 ;; ### ll-adjoin
-;; (**ll-adjoin** [ll-anyp]: _v_ [listp]: _lst_) -> [listp]
+;; (**ll-adjoin** _v_: [ll-anyp] _lst_: [listp]): [listp]
 ;;
 ;; TODO
 (defun ll-adjoin (v lst)
@@ -46,7 +46,7 @@
       (cons v lst)))
 
 ;; ### ll-union
-;; (**ll-union** [listp]: _lst1_ [listp]: _lst2_) -> [listp]
+;; (**ll-union** _lst1_: [listp] _lst2_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
@@ -61,7 +61,7 @@
       lst1))
 
 ;; ### ll-intersection
-;; (**ll-intersection** [listp]: _lst1_ [listp]: _lst2_) -> [listp]
+;; (**ll-intersection** _lst1_: [listp] _lst2_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
@@ -77,7 +77,7 @@
       out))
 
 ;; ### ll-set-difference
-;; (**ll-set-difference** [listp]: _lst1_ [listp]: _lst2_) -> [listp]
+;; (**ll-set-difference** _lst1_: [listp] _lst2_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
@@ -93,7 +93,7 @@
       out))
 
 ;; ### ll-set-exclusive-or
-;; (**ll-set-exclusive-or** [listp]: _lst1_ [listp]: _lst2_) -> [listp]
+;; (**ll-set-exclusive-or** _lst1_: [listp] _lst2_: [listp]): [listp]
 ;;
 ;; TODO
 ;;

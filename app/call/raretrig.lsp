@@ -10,7 +10,7 @@
 ;; ====================================================
 
 ;; ### ll-cot
-;; (**ll-cot** [numberp]: _z_) -> [ll-realp]
+;; (**ll-cot** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the cotangent of _z_, were _z_ is in radians.
 (defun ll-cot (z)
@@ -18,7 +18,7 @@
   (/ (cos z) (sin z))) ; (/ 1.0 (tan z))
 
 ;; ### ll-sec
-;; (**ll-sec** [numberp]: _z_) -> [ll-realp]
+;; (**ll-sec** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the secant of _z_, were _z_ is in radians.
 (defun ll-sec (z)
@@ -26,7 +26,7 @@
   (/ 1.0 (cos z)))
 
 ;; ### ll-csc
-;; > (**ll-csc** [numberp]: _z_) -> [ll-realp]
+;; > (**ll-csc** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the cosecant of _z_, were _z_ is in radians.
 (defun ll-csc (z)
@@ -34,7 +34,7 @@
   (/ 1.0 (sin z)))
 
 ;; ### ll-acot
-;; (**ll-acot** [numberp]: _z_) -> [ll-realp]
+;; (**ll-acot** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the arccotangent in radians of _z_.
 (defun ll-acot (z)
@@ -42,7 +42,7 @@
   (atan 1.0 z))
 
 ;; ### ll-asec
-;; (**ll-asec** [numberp]: _z_) -> [ll-realp]
+;; (**ll-asec** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the arcsecant in radians of _z_.
 (defun ll-asec (z)
@@ -50,7 +50,7 @@
   (ll-acos (/ 1.0 z)))
 
 ;; ### ll-acsc
-;; (**ll-acsc** [numberp]: _z_) -> [ll-realp]
+;; (**ll-acsc** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the arccosecant in radians of _z_.
 (defun ll-acsc (z)
@@ -58,7 +58,7 @@
   (ll-asin (/ 1.0 z)))
 
 ;; ### ll-versin
-;; (**ll-versin** [numberp]: _z_) -> [ll-realp]
+;; (**ll-versin** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the versine (versed sine) of _z_.
 (defun ll-versin (z)
@@ -66,7 +66,7 @@
   (- 1.0 (cos z)))
 
 ;; ### ll-vercos
-;; (**ll-vercos** [numberp]: _z_) -> [ll-realp]
+;; (**ll-vercos** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the vercosine (versed cosine) of _z_.
 (defun ll-vercos (z)
@@ -74,7 +74,7 @@
   (+ 1.0 (cos z)))
 
 ;; ### ll-coversin
-;; (**ll-coversin** [numberp]: _z_) -> [ll-realp]
+;; (**ll-coversin** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the coversine (coversed sine) of _z_.
 (defun ll-coversin (z)
@@ -82,7 +82,7 @@
   (- 1.0 (sin z)))
 
 ;; ### covercos
-;;; > (**covercos** _z_) -> [ll-realp]
+;;; > (**covercos** _z_): [ll-realp]
 ;;; > - _z_ : [numberp]
 ;;;
 ;;; Returns the covercosine (coversed cosine) of _z_.
@@ -91,7 +91,7 @@
   (+ 1.0 (sin z)))
 
 ;; ### ll-haversin
-;; (**ll-haversin** [numberp]: _z_) -> [ll-realp]
+;; (**ll-haversin** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the haversine (haversed sine) of _z_.
 (defun ll-haversin (z)
@@ -99,7 +99,7 @@
   (/ (- 1.0 (cos z)) 2.0)) ; (/ (versin z) 2.0)
 
 ;; ### ll-havercos
-;; (**ll-havercos** [numberp]: _z_) -> [ll-realp]
+;; (**ll-havercos** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the havercosine (haversed cosine) of _z_.
 (defun ll-havercos (z)
@@ -107,7 +107,7 @@
   (/ (+ 1.0 (cos z)) 2.0)) ; (/ (vercos z) 2.0)
 
 ;; ### ll-hacoversin
-;; (**ll-hacoversin** [numberp]: _z_) -> [ll-realp]
+;; (**ll-hacoversin** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the hacoversine (hacoversed sine) of _z_.
 (defun ll-hacoversin (z)
@@ -115,7 +115,7 @@
   (/ (- 1.0 (sin z)) 2.0)) ; (/ (coversin z) 2.0)
 
 ;; ### ll-hacovercos
-;; (**ll-hacovercos** [numberp]: _z_) -> [ll-realp]
+;; (**ll-hacovercos** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the hacovercosine (hacoversed cosine) of _z_.
 (defun ll-hacovercos (z)
@@ -123,7 +123,7 @@
   (/ (+ 1.0 (sin z)) 2.0)) ; (/ (covercos z) 2.0)
 
 ;; ### ll-exsec
-;; > (**ll-exsec** [numberp]: _z_) -> [ll-realp]
+;; > (**ll-exsec** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the exsecant of _z_.
 (defun ll-exsec (z)
@@ -131,7 +131,7 @@
   (1- (/ 1.0 (cos z)))) ; (1- (sec z))
 
 ;; ### ll-excsc
-;; (**ll-excsc** [numberp]: _z_) -> [ll-realp]
+;; (**ll-excsc** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the excosecant of _z_.
 (defun ll-excsc (z)
@@ -139,7 +139,7 @@
   (1- (/ 1.0 (sin z)))) ; (1- (csc z))
 
 ;; ### ll-coth
-;; (**ll-coth** [numberp]: _z_) -> [ll-realp]
+;; (**ll-coth** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the hyperbolic cotangent of _z_.
 (defun ll-coth (z)
@@ -148,7 +148,7 @@
   (/ (1+ z) (1- z)))
 
 ;; ### ll-sech
-;; (**ll-sech** [numberp]: _z_) -> [ll-realp]
+;; (**ll-sech** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the hyperbolic secant of _z_.
 (defun ll-sech (z)
@@ -157,7 +157,7 @@
   (/ 2.0 (+ z (/ 1.0 z))))
 
 ;; ### ll-csch
-;; (**ll-csch** [numberp]: _z_) -> [ll-realp]
+;; (**ll-csch** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the hyperbolic cosecant of _z_.
 (defun ll-csch (z)
@@ -166,7 +166,7 @@
   (/ 2.0 (- z (/ 1.0 z))))
 
 ;; ### ll-acoth
-;; (**ll-acoth** [numberp]: _z_) -> [ll-realp]
+;; (**ll-acoth** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the hyperbolic area cotangent of _z_.
 (defun ll-acoth (z)
@@ -174,7 +174,7 @@
   (/ (log (/ (+ z 1.0) (- z 1.0))) 2.0))
 
 ;; ### ll-asech
-;; (**ll-asech** [numberp]: _z_) -> [ll-realp]
+;; (**ll-asech** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the hyperbolic area secant of _z_.
 (defun ll-asech (z)
@@ -184,7 +184,7 @@
   (log (+ (/ 1.0 z) (sqrt (1- (/ 1.0 (* z z)))))))
 
 ;; ### ll-acsch
-;; (**ll-acsch** [numberp]: _z_) -> [ll-realp]
+;; (**ll-acsch** _z_: [numberp]): [ll-realp]
 ;;
 ;; Returns the hyperbolic area cosecant of _z_.
 (defun ll-acsch (z)

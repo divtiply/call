@@ -22,7 +22,7 @@
 (setq ll-false (or))
 
 ;; ### ll-booleanp
-;; (**ll-booleanp** _v_) -> [ll-booleanp]
+;; (**ll-booleanp** _v_): [ll-booleanp]
 ;; - _v_ : [ll-anyp]
 ;;
 ;; Returns `t` if _v_ contains a *boolean* value, i.e. `eq` to `t` or `nil`,
