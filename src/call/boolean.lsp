@@ -10,20 +10,19 @@
 ;; =========================
 
 ;; ### ll-true
-;; [ll-booleanp]: **ll-true**
+;; **ll-true**: [ll-booleanp]
 ;;
 ;; Contains `t`.
 (setq ll-true (and))
 
 ;; ### ll-false
-;; [ll-booleanp]: **ll-false**
+;; **ll-false**: [ll-booleanp]
 ;;
 ;; Contains `nil`.
 (setq ll-false (or))
 
 ;; ### ll-booleanp
-;; (**ll-booleanp** _v_): [ll-booleanp]
-;; - _v_ : [ll-anyp]
+;; (**ll-booleanp** _v_: [ll-anyp]): [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ contains a *boolean* value, i.e. `eq` to `t` or `nil`,
 ;; `nil` otherwise.
