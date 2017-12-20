@@ -7,14 +7,11 @@
 
 
 ;; # Lists
-;; =======
 
 
 ;; ## List Predictates
-;; -------------------
 
-;; ### atom
-;; (**atom** _v_: [ll-anyp]): [ll-booleanp]
+;; ### (**atom** _v_: [ll-anyp]): [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ is an *atom*, `nil` otherwise.
 ;;
@@ -23,8 +20,7 @@
 ;;
 ;; AutoLISP built-in.
 
-;; ### null
-;; (**null** _v_: [ll-anyp]): [ll-booleanp]
+;; ### (**null** _v_: [ll-anyp]): [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ is `nil`, `nil` otherwise.
 ;;
@@ -34,8 +30,7 @@
 ;;
 ;; AutoLISP built-in.
 
-;; ### ll-consp
-;; (**ll-consp** _v_: [ll-anyp]): [ll-booleanp]
+;; ### (**ll-consp** _v_: [ll-anyp]): [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ is a *cons* cell, `nil` otherwise.
 ;;
@@ -52,8 +47,7 @@
     (defun ll-consp (v)
       (not (atom v)))) ; (eq 'LIST (type v))
 
-;; ### listp
-;; (**listp** _v_: [ll-anyp]): [ll-booleanp]
+;; ### (**listp** _v_: [ll-anyp]): [ll-booleanp]
 ;;
 ;; Returns `t` if _v_ is a *cons* cell or `nil`, `nil` otherwise.
 ;;
@@ -62,20 +56,17 @@
 ;;
 ;; AutoLISP built-in.
 
-;; ### ll-endp
-;; (**ll-endp** _lst_: [listp]): [ll-booleanp]
+;; ### (**ll-endp** _x_: [listp]): [ll-booleanp]
 ;;
-;; Like `null`, but signals an error if _lst_ is not a *list*.
-(defun ll-endp (lst)
-  (car lst) ; raise error if not listp
-  (null lst))
+;; Like `null`, but signals an error if _x_ is not a *list*.
+(defun ll-endp (x)
+  (car x) ; raise error if not listp
+  (null x))
 
 
 ;; ## List Constructors
-;; --------------------
 
-;; ### cons
-;; (**cons** _a_: [ll-anyp] _d_: [ll-anyp]): [ll-consp]
+;; ### (**cons** _a_: [ll-anyp] _d_: [ll-anyp]): [ll-consp]
 ;;
 ;; Returns a newly allocated *cons* cell whose first element is _a_ and second
 ;; element is _d_.
@@ -85,8 +76,7 @@
 ;;
 ;; AutoLISP built-in.
 
-;; ### list
-;; (**list** _v_: [ll-anyp] ...): [listp]
+;; ### (**list** _v_: [ll-anyp] ...): [listp]
 ;;
 ;; Returns a newly allocated list containing the _v_s as its elements.
 ;;
@@ -96,27 +86,25 @@
 ;;
 ;; AutoLISP built-in.
 
-;; ### ll-make-list
-;; (**ll-make-list** _n_: [ll-natnump] _v_: [ll-anyp]): [listp]
+;; ### (**ll-make-list** _n_: [ll-natnump] _v_: [ll-anyp]): [listp]
 ;;
 ;; Returns a list of _n_ elements, in wich each element is _v_.
 ;;
 ;;     (ll-make-list 7 'foo) => (FOO FOO FOO FOO FOO FOO FOO)
 ;;
-(defun ll-make-list (n v / lst)
+(defun ll-make-list (n v / x)
   (repeat n
-    (setq lst (cons v lst))))
+    (setq x (cons v x))))
 
-;; ### ll-iota
-;; > (**ll-iota** _n_: [ll-natnump]): [listp]
+;; ### (**ll-iota** _n_: [ll-natnump]): [listp]
 ;;
 ;; TODO
-(defun ll-iota (n / lst)
+(defun ll-iota (n / x)
   ;; same as (ll-iota-range 0 n 1)
   (repeat n
-    (setq lst (cons (setq n (1- n)) lst))))
+    (setq x (cons (setq n (1- n)) x))))
 
-;; (defun ll-range (start end step / len lst)
+;; (defun ll-range (start end step / len x)
 ;;   ;; FIXME: try (ll-range 0 10.1 0.5)
 ;;   (setq len (- end start)
 ;;         len (fix (if (zerop (rem len step))
@@ -124,14 +112,12 @@
 ;;                      (1+ (/ len step)))
 ;;         end (+ start (* step len)))
 ;;   (repeat
-;;     (setq lst (cons (setq end (- end step)) lst))))
+;;     (setq x (cons (setq end (- end step)) x))))
 
 
 ;; ## List Selectors
-;; -----------------
 
-;; ### car
-;; (**car** _p_: [ll-consp]): [ll-anyp]
+;; ### (**car** _p_: [ll-consp]): [ll-anyp]
 ;;
 ;; Returns the value referred to by the first slot of the cons cell _p_.
 ;; In other words, it returns the car of _p_.
@@ -145,8 +131,7 @@
 ;;
 ;; AutoLISP built-in.
 
-;; ### cdr
-;; (**cdr** _p_: [ll-consp]): [ll-anyp]
+;; ### (**cdr** _p_: [ll-consp]): [ll-anyp]
 ;;
 ;; Returns the value referred to by the second slot of the cons cell _p_.
 ;; In other words, it returns the cdr of _p_.
@@ -160,23 +145,21 @@
 ;;
 ;; AutoLISP built-in.
 
-;; ### caar, cadr, cdar, cddr, ..., cddddr
-;; (**cddddr** _p_: [ll-consp]): [ll-anyp]
+;; ### (**cddddr** _p_: [ll-consp]): [ll-anyp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
-;; ### ll-first {#ll-first}{#ll-second}{#ll-third}{#ll-fourth}{#ll-fifth}{#ll-sixth}{#ll-seventh}{#ll-eighth}{#ll-ninth}{#ll-tenth}
-;; (**ll-first** _lst_: [listp]): [ll-anyp]
+;; ### (**ll-first** _x_: [listp]): [ll-anyp]
 ;;
 ;; Alias for `car`.
 ;;
 ;; Likewise, the functions `ll-second`, `ll-third`, `ll-fourth`, `ll-fifth`,
 ;; `ll-sixth`, `ll-seventh`, `ll-eighth`, `ll-ninth` and `ll-tenth` return the
-;; given element of the _lst_.
+;; given element of the _x_.
 ;;
-;; Identical to LispEx `vle-nth0` (`ll-first`) ... `vle-nth9` (`ll-tenth`).
+;; Identical to BricsCAD LISP `vle-nth0` (`ll-first`) ... `vle-nth9` (`ll-tenth`).
 (if (and (not *call:ignore-lispex*)
          vle-nth0 vle-nth1 vle-nth2 vle-nth3 vle-nth4
          vle-nth5 vle-nth6 vle-nth7 vle-nth8 vle-nth9)
@@ -199,52 +182,51 @@
         ll-third   caddr
         ll-fourth  cadddr
         )
-      (defun ll-fifth   (lst)       (car    (cddddr lst)))
-      (defun ll-sixth   (lst)       (cadr   (cddddr lst)))
-      (defun ll-seventh (lst)       (caddr  (cddddr lst)))
-      (defun ll-eighth  (lst)       (cadddr (cddddr lst)))
-      (defun ll-ninth   (lst) (car  (cddddr (cddddr lst))))
-      (defun ll-tenth   (lst) (cadr (cddddr (cddddr lst))))
+      (defun ll-fifth   (x)       (car    (cddddr x)))
+      (defun ll-sixth   (x)       (cadr   (cddddr x)))
+      (defun ll-seventh (x)       (caddr  (cddddr x)))
+      (defun ll-eighth  (x)       (cadddr (cddddr x)))
+      (defun ll-ninth   (x) (car  (cddddr (cddddr x))))
+      (defun ll-tenth   (x) (cadr (cddddr (cddddr x))))
       ))
 
-;; ### ll-rest
-;; (**ll-rest** _lst_: [listp]): [ll-anyp]
+;; ### (**ll-rest** _x_: [listp]): [ll-anyp]
 ;;
 ;; Alias for `cdr`.
 (setq ll-rest cdr)
 
-;; ### last
-;; (**last** _lst_: [listp]): [ll-anyp]
+;; ### (**last** _x_: [listp]): [ll-anyp]
 ;;
-;; Returns the last element of _lst_.
+;; Returns the last element of _x_.
 ;;
-;; If _lst_ is null, `nil` is returned.
+;; If _x_ is null, `nil` is returned.
 ;;
 ;;     (last '(a b c)) => C
 ;;
 ;; AutoLISP built-in.
-
-;; ### nth
-;; (**nth** _n_: [ll-natnump] _lst_: [listp]): [ll-anyp]
 ;;
-;; Returns the _n_-th element of _lst_.
+;; See also `ll-last-cons`, `ll-lastn`.
+
+;; ### (**nth** _n_: [ll-natnump] _x_: [listp]): [ll-anyp]
+;;
+;; Returns the _n_-th element of _x_.
 ;;
 ;; Elements are numbered starting with zero, so the car of list is element
-;; number zero. If the length of _lst_ is _n_ or less, the value is `nil`.
+;; number zero. If the length of _x_ is _n_ or less, the value is `nil`.
 ;;
 ;;     (nth 2 '(1 2 3 4)) => 3
 ;;     (nth 10 '(1 2 3 4)) => NIL
 ;;
 ;; Equivalent to `(car (ll-nthcdr n list))`.
+;;
 ;; AutoLISP built-in.
 
-;; ### ll-nthcdr
-;; (**ll-nthcdr** _n_: [ll-natnump] _lst_: [listp]): [ll-anyp]
+;; ### (**ll-nthcdr** _n_: [ll-natnump] _x_: [listp]): [ll-anyp]
 ;;
-;; Returns the _n_-th cdr of _lst_. In other words, it skips past the first
+;; Returns the _n_-th cdr of _x_. In other words, it skips past the first
 ;; _n_ links of list and returns what follows.
 ;;
-;; If _n_ is zero, returns all of list. If the length of _lst_ is _n_ or less,
+;; If _n_ is zero, returns all of list. If the length of _x_ is _n_ or less,
 ;; returns `nil`.
 ;;
 ;;     (ll-nthcdr 1 '(1 2 3 4)) => (2 3 4)
@@ -252,175 +234,165 @@
 ;;
 (if (and (not *call:ignore-lispex*)
          vle-sublist)
-    (defun ll-nthcdr (n lst)
-      (vle-sublist lst n 0))
-    (defun ll-nthcdr (n lst)
+    (defun ll-nthcdr (n x)
+      (vle-sublist x n 0))
+    (defun ll-nthcdr (n x)
       (nth n (list nil)) ; raise error if not natnump
-      (while (and lst (< 0 n))
+      (while (and x (< 0 n))
         (setq n (1- n)
-              lst (cdr lst)))
-      lst))
+              x (cdr x)))
+      x))
 
-;; ### ll-firstn
-;; (**ll-firstn** _lst_: [listp] _n_: [ll-natnump]): [listp]
+;; ### (**ll-firstn** _x_: [listp] _n_: [ll-natnump]): [listp]
 ;;
-;; Returns first _n_ elements of _lst_.
+;; Returns first _n_ elements of _x_.
 ;;
-;; If _lst_ is null, `nil` is returned.
+;; If _x_ is null, `nil` is returned.
 (if (and (not *call:ignore-lispex*)
          vle-sublist)
-    (defun ll-firstn (lst n)
+    (defun ll-firstn (x n)
       (if (/= 0 n)
-          (vle-sublist lst 0 n)))
-    (defun ll-firstn (lst n / out)
+          (vle-sublist x 0 n)))
+    (defun ll-firstn (x n / y)
       (nth n (list nil)) ; raise error if not natnump
-      (while (and lst (< 0 n))
+      (while (and x (< 0 n))
         (setq n (1- n)
-              out (cons (car lst) out)
-              lst (cdr lst)))
-      (reverse out)))
+              y (cons (car x) y)
+              x (cdr x)))
+      (reverse y)))
 
-;; ### ll-butlast
-;; (**ll-butlast** _lst_: [listp]): [listp]
+;; ### (**ll-butlast** _x_: [listp]): [listp]
 ;;
-;; Returns a copy of _lst_ with the last element removed.
+;; Returns a copy of _x_ with the last element removed.
 ;;
-;; Identical to LispEx `vle-remove-last`.
+;; Identical to BricsCAD LISP `vle-remove-last`.
 (if (and (not *call:ignore-lispex*)
          vle-remove-last)
     (setq ll-butlast vle-remove-last)
-    (defun ll-butlast (lst)
-      (reverse (cdr (reverse lst)))))
+    (defun ll-butlast (x)
+      (reverse (cdr (reverse x)))))
 
-;; ### ll-butlastn
-;; (**ll-butlastn** _lst_: [listp] _n_: [ll-natnump]): [listp]
+;; ### (**ll-butlastn** _x_: [listp] _n_: [ll-natnump]): [listp]
 ;;
-;; Returns a copy of _lst_ with the last _n_ elements removed.
+;; Returns a copy of _x_ with the last _n_ elements removed.
 ;;
 ;; FIXME: If _n_ is greater than zero it makes a copy of the list so as not to
-;; damage the original list. In general, `(append (ll-butlastn lst n) (ll-lastn
-;; lst n))` will return a list equal to _lst_.
+;; damage the original list. In general, `(append (ll-butlastn x n) (ll-lastn
+;; x n))` will return a list equal to _x_.
 (if (and (not *call:ignore-lispex*)
          vle-sublist)
-    (defun ll-butlastn (lst n / len)
-      (if (< n (setq len (length lst)))
-          (vle-sublist lst 0 (- len n))))
-    (defun ll-butlastn (lst n)
-      (reverse (ll-nthcdr n (reverse lst)))))
+    (defun ll-butlastn (x n / len)
+      (if (< n (setq len (length x)))
+          (vle-sublist x 0 (- len n))))
+    (defun ll-butlastn (x n)
+      (reverse (ll-nthcdr n (reverse x)))))
 
-;; ### ll-last-cons
-;; (**ll-last-cons** _lst_: [listp]): [ll-consp]
+;; ### (**ll-last-cons** _x_: [listp]): [ll-consp]
 ;;
-;; Returns the last cons of _lst_.
+;; Returns the last cons of _x_.
 ;;
 ;;     (ll-last-cons '(a b c)) => (C)
 ;;     (ll-last-cons (cons a b)) => B
-(defun ll-last-cons (lst)
-  ;; (while (ll-consp (cdr lst))
-  (while (not (atom (cdr lst)))
-    (setq lst (cdr lst)))
-  lst)
+(defun ll-last-cons (x)
+  ;; (while (ll-consp (cdr x))
+  (while (not (atom (cdr x)))
+    (setq x (cdr x)))
+  x)
 
-;; ### ll-lastn
-;; (**ll-lastn** _lst_: [listp] _n_: [ll-natnump]): [listp]
+;; ### (**ll-lastn** _x_: [listp] _n_: [ll-natnump]): [listp]
 ;;
-;; Returns the last _n_ conses (not the last _n_ elements) of _lst_.
+;; Returns the last _n_ conses (not the last _n_ elements) of _x_.
 ;;
-;; If _lst_ is null, `nil` is returned. If _n_ is non-`nil`, the
+;; If _x_ is null, `nil` is returned. If _n_ is non-`nil`, the
 ;; _n_-th-to-last element is returned instead, or the whole of list if _n_ is
 ;; bigger than list's length.
 (if (and (not *call:ignore-lispex*)
          vle-sublist)
-    (defun ll-lastn (lst n)
-      (vle-sublist lst (- (length lst) n) 0))
+    (defun ll-lastn (x n)
+      (vle-sublist x (- (length x) n) 0))
     ;; Faster for larger Ns.
-    (defun ll-lastn (lst n / out)
-      (setq out lst
-            lst (ll-nthcdr n lst))
-      (while lst
-        (setq out (cdr out)
-              lst (cdr lst)))
-      out))
+    (defun ll-lastn (x n / y)
+      (setq y x
+            x (ll-nthcdr n x))
+      (while x
+        (setq y (cdr y)
+              x (cdr x)))
+      y))
     ;; Faster for smaller Ns.
-    ;; (defun ll-lastn (lst n / out)
+    ;; (defun ll-lastn (x n / y)
     ;;   ;; Non-conformity: returns a _copy_ of the list tail,
     ;;   ;; should return the tail itself.
     ;;   (nth n (list nil)) ; raise error if not natnump
-    ;;   (setq lst (reverse lst))
-    ;;   (while (and lst (< 0 n))
+    ;;   (setq x (reverse x))
+    ;;   (while (and x (< 0 n))
     ;;     (setq n (1- n)
-    ;;           out (cons (car lst) out)
-    ;;           lst (cdr lst)))
-    ;;   out)
+    ;;           y (cons (car x) y)
+    ;;           x (cdr x)))
+    ;;   y)
 
-;; ### ll-sublist
-;; (**ll-sublist** _lst_: [listp] _start_: [ll-natnump] _len_: [ll-natnump]): [listp]
+;; ### (**ll-sublist** _x_: [listp] _start_: [ll-natnump] _len_: [ll-natnump]): [listp]
 ;;
-;; TODO: Returns the sublist of _lst_ starting with item at position _start_.
+;; TODO: Returns the sublist of _x_ starting with item at position _start_.
 ;; TODO: If _len_ <= 0 process to end of the list.
 ;;
-;; FIXME: NOT EXACT ~~Equivalent to `(ll-firstn (ll-nthcdr start lst) len)`.~~
+;; FIXME: NOT EXACT ~~Equivalent to `(ll-firstn (ll-nthcdr start x) len)`.~~
 ;;
-;; Identical to LispEx `vle-sublist`.
+;; Identical to BricsCAD LISP `vle-sublist`.
 (if (and (not *call:ignore-lispex*)
          vle-sublist)
     (setq ll-sublist vle-sublist)
-    (defun ll-sublist (lst start len)
+    (defun ll-sublist (x start len)
       (if (< 0 len)
-          (ll-firstn (ll-nthcdr start lst) len)
-          (ll-nthcdr start lst))))
+          (ll-firstn (ll-nthcdr start x) len)
+          (ll-nthcdr start x))))
 
-;; ### ll-subseq
-;; (**ll-subseq** _lst_: [listp] _start_: [ll-natnump] _end_: [ll-natnump]): [listp]
+;; ### (**ll-subseq** _x_: [listp] _start_: [ll-natnump] _end_: [ll-natnump]): [listp]
 ;;
 ;; TODO
-(defun ll-subseq (lst start end)
-  (ll-sublist lst start (if end (- end start) 0))) ; FIXME: 0 is bad for firstn (see solution above)
+(defun ll-subseq (x start end)
+  (ll-sublist x start (if end (- end start) 0))) ; FIXME: 0 is bad for firstn (see solution above)
 
 
 ;; ## List Splitting
-;; -----------------
 
-;; ### ll-split-if {#ll-split-if}{#ll-split-if-not}
-;; (**ll-split-if** _pred_: [ll-functionp] _lst_: [listp]): [listp]
-;; (**ll-split-if-not** _pred_: [ll-functionp] _lst_: [listp]): [listp]
+;; ### (**ll-split-if** _pred_: [ll-functionp] _x_: [listp]): [listp]
+;; ### (**ll-split-if-not** _pred_: [ll-functionp] _x_: [listp]): [listp]
 ;;
 ;; TODO
 (if *call:enable-preeval*
   (progn
-    (defun ll-split-if (pred lst / out)
+    (defun ll-split-if (pred x / y)
       (setq pred (eval pred))
-      (while (and lst
-                  (not (pred (car lst))))
-        (setq out (cons (car lst) out)
-              lst (cdr lst)))
-      (list (reverse out) lst))
-    (defun ll-split-if-not (pred lst / out)
+      (while (and x
+                  (not (pred (car x))))
+        (setq y (cons (car x) y)
+              x (cdr x)))
+      (list (reverse y) x))
+    (defun ll-split-if-not (pred x / y)
       (setq pred (eval pred))
-      (while (and lst
-                  (pred (car lst)))
-        (setq out (cons (car lst) out)
-              lst (cdr lst)))
-      (list (reverse out) lst)))
+      (while (and x
+                  (pred (car x)))
+        (setq y (cons (car x) y)
+              x (cdr x)))
+      (list (reverse y) x)))
   (progn
-    (defun ll-split-if (pred lst / out)
-      (while (and lst
-                  (not (apply pred (list (car lst)))))
-        (setq out (cons (car lst) out)
-              lst (cdr lst)))
-      (list (reverse out) lst))
-    (defun ll-split-if-not (pred lst / out)
-      (while (and lst
-                  (apply pred (list (car lst))))
-        (setq out (cons (car lst) out)
-              lst (cdr lst)))
-      (list (reverse out) lst))))
+    (defun ll-split-if (pred x / y)
+      (while (and x
+                  (not (apply pred (list (car x)))))
+        (setq y (cons (car x) y)
+              x (cdr x)))
+      (list (reverse y) x))
+    (defun ll-split-if-not (pred x / y)
+      (while (and x
+                  (apply pred (list (car x))))
+        (setq y (cons (car x) y)
+              x (cdr x)))
+      (list (reverse y) x))))
 
-;; ### ll-split-at
-;; (**ll-split-at** _n_: [ll-natnump] _lst_: [listp]): [listp]
+;; ### (**ll-split-at** _n_: [ll-natnump] _x_: [listp]): [listp]
 ;;
 ;; Returns a list of two sublists, where first sublist is first _n_ elements of
-;; _lst_, and second sublist is the remaining elements.
+;; _x_, and second sublist is the remaining elements.
 ;;
 ;;     (ll-split-at 3 '(a b c d e f g)) => ((A B C) (D E F G))
 ;;
@@ -431,107 +403,100 @@
 ;;     tail
 ;;       => (4 5)
 ;;
-;; Equivalent to `(list (ll-firstn list n) (ll-nthcdr n list))`, except that it
-;; can be faster.
+;; Equivalent to `(list (ll-firstn x n) (ll-nthcdr n x))`, except that it can be
+;; faster.
 (if (and (not *call:ignore-lispex*)
          vle-sublist)
-    (defun ll-split-at (n lst)
+    (defun ll-split-at (n x)
       (if (< 0 n)
-          (list (vle-sublist lst 0 n) (vle-sublist lst n 0))
-          (list nil lst)))
-    (defun ll-split-at (n lst / out)
+          (list (vle-sublist x 0 n) (vle-sublist x n 0))
+          (list nil x)))
+    (defun ll-split-at (n x / y)
       (nth n (list nil)) ; raise error if not natnump
-      (while (and lst (< 0 n))
+      (while (and x (< 0 n))
         (setq n (1- n)
-              out (cons (car lst) out)
-              lst (cdr lst)))
-      (list (reverse out) lst)))
+              y (cons (car x) y)
+              x (cdr x)))
+      (list (reverse y) x)))
 
-;; ### ll-split-at-first
-;; (**ll-split-at-first** _v_: [ll-anyp] _lst_: [listp]): [listp]
+;; ### (**ll-split-at-first** _v_: [ll-anyp] _x_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
-;; Identical to LispEx `vle-list-split`.
+;; Identical to BricsCAD LISP `vle-list-split`.
 ;; Similar to Express Tools `acet-list-split`, but with reverse argument
 ;; order.
 (if (and (not *call:ignore-lispex*)
          vle-list-split)
     (setq ll-split-at-first vle-list-split)
-    (defun ll-split-at-first (v lst / out)
-      (while (and lst
-                  (not (equal v (car lst))))
-        (setq out (cons (car lst) out)
-              lst (cdr lst)))
-      (list (reverse out) lst)))
+    (defun ll-split-at-first (v x / y)
+      (while (and x
+                  (not (equal v (car x))))
+        (setq y (cons (car x) y)
+              x (cdr x)))
+      (list (reverse y) x)))
 
-;; ### ll-split-at-last
-;; (**ll-split-at-last** _v_: [ll-anyp] _lst_: [listp]): [listp]
+;; ### (**ll-split-at-last** _v_: [ll-anyp] _x_: [listp]): [listp]
 ;;
 ;; TODO
-(defun ll-split-at-last (v lst / in out)
+(defun ll-split-at-last (v x / in y)
   ;; TODO: OPTIMIZE: search & save pointer, then search more
-  (setq in (reverse lst))
+  (setq in (reverse x))
   (while (and in
               (not (equal v (car in))))
-    (setq out (cons (car in) out)
+    (setq y (cons (car in) y)
           in (cdr in)))
   (if in
-      (cons (reverse (cdr in)) (cons (car in) out)) ;---!!! FIXME
-      (list lst)))
+      (cons (reverse (cdr in)) (cons (car in) y)) ;---!!! FIXME
+      (list x)))
 
-;; ### ll-partition
-;; (**ll-partition** _n_: [ll-natnump] _lst_: [listp]): [listp]
+;; ### (**ll-partition** _n_: [ll-natnump] _x_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
 ;;     (ll-partition 2 '(a b c d e)) => ((a b)(c d))
 ;;
-(defun ll-partition (n lst) ; split-every, chunk
+(defun ll-partition (n x) ; split-every, chunk
   (*error* "ll-partition: Function not implemented")) ;--- TODO
 
-;; ### ll-partition-all
-;; (**ll-partition-all** _n_: [ll-natnump] _lst_: [listp]): [listp]
+;; ### (**ll-partition-all** _n_: [ll-natnump] _x_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
 ;;     (ll-partition-all 2 '(a b c d e)) => ((a b)(c d)(e))
 ;;
-(defun ll-partition-all (n lst)
+(defun ll-partition-all (n x)
   (*error* "ll-partition-all: Function not implemented")) ;--- TODO
 
-;; ### ll-separate
-;; (**ll-separate** _pred_: [ll-functionp] _lst_: [listp]): [listp]
+;; ### (**ll-separate** _pred_: [ll-functionp] _x_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
 ;;     (ll-separate 'numberp '(a b 1 c 2)) => ((1 2) (a b c))
 ;;
 (if *call:enable-preeval*
-    (defun ll-separate (pred lst / in out)
+    (defun ll-separate (pred x / y1 y2)
       (setq pred (eval pred))
-      (foreach x lst
+      (foreach x x
         (if (pred x)
-            (setq in (cons x in))
-            (setq out (cons x out))))
-      (list (reverse in) (reverse out)))
-    (defun ll-separate (pred lst / in out)
-      (foreach x lst
+            (setq y1 (cons x y1))
+            (setq y2 (cons x y2))))
+      (list (reverse y1) (reverse y2)))
+    (defun ll-separate (pred x / y1 y2)
+      (foreach x x
         (if (apply pred (list x))
-            (setq in (cons x in))
-            (setq out (cons x out))))
-      (list (reverse in) (reverse out))))
+            (setq y1 (cons x y1))
+            (setq y2 (cons x y2))))
+      (list (reverse y1) (reverse y2))))
 
 
 ;; ## List Operations
-;; ------------------
 
-;; ### length
-;; (**length** _lst_: [listp]): [natump]
+;; ### (**length** _x_: [listp]): [ll-natump]
 ;;
-;; Returns the number of elements in _lst_.
+;; Returns the number of elements in _x_.
 ;;
-;; It is an error if _lst_ is an improper list.
+;; It is an error if _x_ is an improper list.
 ;;
 ;;     (length '(1 2 3)) => 3
 ;;     (length '()) => 0
@@ -539,34 +504,32 @@
 ;; AutoLISP built-in.
 
 ;; ### ll-list-length
-;; (ll-list-length _lst_: [listp]) -> (or [ll-natnump] [null])
+;; (ll-list-length _x_: [listp]): ([ll-natnump] [null])
 ;;
-;; Returns the length of _lst_, exactly like `length`, except that if _lst_
+;; Returns the length of _x_, exactly like `length`, except that if _x_
 ;; is an improper list, `nil` is returned.
 ;;
 ;; Identical to VisualLISP `vl-list-length`.
 (if (and (not *call:ignore-vlisp*)
          vl-list-length)
     (setq ll-list-length vl-list-length)
-    (defun ll-list-length (lst / len)
+    (defun ll-list-length (x / len)
       (setq len 0)
-      (while (and lst
-                  (listp (setq lst (cdr lst))))
+      (while (and x
+                  (listp (setq x (cdr x))))
         (setq len (1+ len)))
-      (if (null lst)
+      (if (null x)
           len)))
 
-;; ### reverse
-;; (**reverse** _lst_: [listp]): [listp]
+;; ### (**reverse** _x_: [listp]): [listp]
 ;;
-;; Returns a list that has the same elements as _lst_, but in reverse order.
+;; Returns a list that has the same elements as _x_, but in reverse order.
 ;;
 ;;     (reverse (list 1 2 3 4)) => (4 3 2 1)
 ;;
 ;; AutoLISP built-in.
 
-;; ### append
-;; (**append** _lst_: [listp] ...): [listp]
+;; ### (**append** _x_: [listp] ...): [listp]
 ;;
 ;; Returns a list that contains all of the elements of the given lists in
 ;; order.
@@ -577,11 +540,10 @@
 ;;
 ;; AutoLISP built-in.
 
-;; ### ll-revappend
-;; (**ll-revappend** _lst_: [listp] _v_: [ll-anyp]): [listp]
+;; ### (**ll-revappend** _x_: [listp] _v_: [ll-anyp]): [listp]
 ;;
 ;; TODO
-;; If v is a list then (ll-revappend lst v) == (append (reverse lst) v)
+;; If v is a list then (ll-revappend x v) == (append (reverse x) v)
 ;;
 ;;     (ll-revappend '(1 2 3) '()) => (3 2 1)
 ;;     (ll-revappend '(1 2 3) '(a . b)) => (3 2 1 A . B)
@@ -589,80 +551,76 @@
 ;;     (ll-revappend '(1 2 3) 'a) => (3 2 1 . A)
 ;;     (ll-revappend '() 'a) =>  A ; degenerate case
 ;;
-(defun ll-revappend (lst v)
-  (while lst
-    (setq v (cons (car lst) v)
-          lst (cdr lst)))
+(defun ll-revappend (x v)
+  (while x
+    (setq v (cons (car x) v)
+          x (cdr x)))
   v)
 
-;; ### ll-copy-list
-;; (*ll-copy-list* _lst_: [listp])
+;; ### (**ll-copy-list** _x_: [listp])
 ;;
 ;; TODO
-(defun ll-copy-list (lst)
+(defun ll-copy-list (x)
   ;; http://www.gigamonkeys.com/book/beyond-lists-other-uses-for-cons-cells.html
   ;; FIXME: OPTIMIZE
-  (if (atom lst)
-      lst
-      (cons (car lst) (ll-copy-list (cdr lst)))))
-;; (defun ll-copy-list (lst)
-;;   ;; (append lst nil)) ; Doesn't works properly in BircsCAD
-;;   (append nil lst nil)) ; FIXME: (LL-COPY-LIST '(A . B)) fails
+  (if (atom x)
+      x
+      (cons (car x) (ll-copy-list (cdr x)))))
+;; (defun ll-copy-list (x)
+;;   ;; (append x nil)) ; Doesn't works properly in BircsCAD
+;;   (append nil x nil)) ; FIXME: (LL-COPY-LIST '(A . B)) fails
 
 ;; TODO: copy-alist
 
-;; ### ll-copy-tree
-;; (*ll-copy-tree* _lst_: [listp])
+;; ### (**ll-copy-tree** _x_: [listp])
 ;;
 ;; TODO
-(defun ll-copy-tree (tr)
+(defun ll-copy-tree (x)
   ;; http://www.gigamonkeys.com/book/beyond-lists-other-uses-for-cons-cells.html
   ;; FIXME: OPTIMIZE
-  (if (atom tr)
-      tr
-      (cons (ll-copy-tree (car tr))
-        (ll-copy-tree (cdr tr)))))
+  (if (atom x)
+      x
+      (cons (ll-copy-tree (car x))
+        (ll-copy-tree (cdr x)))))
 
-;; ### ll-count
-;; (**ll-count** _v_: [ll-anyp] _lst_: [listp]): [ll-natnump]
+;; ### (**ll-count** _v_: [ll-anyp] _x_: [listp]): [ll-natnump]
 ;;
-;; Returns the number of elements of _lst_ which match _v_.
-(defun ll-count (v lst / n)
+;; Returns the number of elements of _x_ which match _v_.
+(defun ll-count (v x / n)
   (setq n 0)
-  (while (setq lst (member v lst))
-    (setq lst (cdr lst)
+  (while (setq x (member v x))
+    (setq x (cdr x)
           n (1+ n)))
   n)
 
-;; ### ll-count-if {#ll-count-if}{#ll-count-if-not}
-;; (**ll-count-if** _pred_: [ll-functionp] _lst_: [listp]): [ll-natnump]
-;; (**ll-count-if-not** _pred_: [ll-functionp] _lst_: [listp]): [ll-natnump]
+;; ### (**ll-count-if** _pred_: [ll-functionp] _x_: [listp]): [ll-natnump]
+;; (**ll-count-if-not** _pred_: [ll-functionp] _x_: [listp]): [ll-natnump]
 ;;
 ;; TODO
 (if *call:enable-preeval*
   (progn
-    (defun ll-count-if (pred lst / n)
+    (defun ll-count-if (pred x / n)
       ;; TODO: rewrite using while (see count)
       (setq pred (eval pred)
             n 0)
-      (foreach x lst
-        (if (pred x)
+      (foreach v x
+        (if (pred v)
             (setq n (1+ n))))
       n)
-    (defun ll-count-if-not (pred lst / n)
+    (defun ll-count-if-not (pred x / n)
       ;; TODO: rewrite using while (see count)
       (setq pred (eval pred)
             n 0)
-      (foreach x lst
-        (or (pred x)
+      (foreach v x
+        (or (pred v)
             (setq n (1+ n))))
       n))
   (progn
-    (defun ll-count-if (pred lst / n)
+    (defun ll-count-if (pred x / n)
       ;; TODO: rewrite using while (see count)
       (setq n 0)
-      (foreach x lst
-        (if (apply (function pred) (list x))
+      (foreach v x
+        (if (apply (function pred) (list v))
             (setq n (1+ n))))
       n))
     ;; TODO (defun count-if-not
@@ -670,101 +628,95 @@
 
 
 ;; ## List Iteration
-;; -----------------
 
-;; ### mapcar
-;; (**mapcar** _fn_: [ll-functionp] _lst_: [listp] ...): [listp]
+;; ### (**mapcar** _fn_: [ll-functionp] _x_: [listp] ...): [listp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
-;; ### ll-maplist
-;; (**ll-maplist** _fn_: [ll-functionp] _lst_: [listp]): [listp]
+;; ### (**ll-maplist** _fn_: [ll-functionp] _x_: [listp]): [listp]
 ;;
 ;; TODO
 (if *call:enable-preeval*
-    (defun ll-maplist (fn lst / out) ; TODO: should it support improper lists?
-      (car lst) ; raise error if not listp
+    (defun ll-maplist (fn x / y) ; TODO: should it support improper lists?
+      (car x) ; raise error if not listp
       (setq fn (eval fn))
-      (while lst
-        (setq out (cons (fn lst) out)
-              lst (cdr lst)))
-      (reverse out))
-    (defun ll-maplist (fn lst / out) ; TODO: should it support improper lists?
-      (car lst) ; raise error if not listp
-      (while lst
-        (setq out (cons (apply fn (list lst)) out)
-              lst (cdr lst)))
-      (reverse out)))
+      (while x
+        (setq y (cons (fn x) y)
+              x (cdr x)))
+      (reverse y))
+    (defun ll-maplist (fn x / y) ; TODO: should it support improper lists?
+      (car x) ; raise error if not listp
+      (while x
+        (setq y (cons (apply fn (list x)) y)
+              x (cdr x)))
+      (reverse y)))
 
-;; ### ll-maptree
-;; (**ll-maptree** _fn_: [ll-functionp] _tree_: [listp]): [listp]
+;; ### (**ll-maptree** _fn_: [ll-functionp] _x_: [listp]): [listp]
 ;;
 ;; TODO
 ; FIXME: !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ; FIXME: (if *call:enable-preeval*
-(defun ll-maptree (fn tree / out pend cur pendlst newlst)
+(defun ll-maptree (fn x / y pend cur pendlst newlst)
   ;; based on STDLIB std-mapatom
   ;; see ll-flatten
   (cond
-    ((atom tree) (apply fn (list tree)))
+    ((atom x) (apply fn (list x)))
     (t
      ;; loop until last element, for '(1 2 . 3) too
-     (while (not (atom tree)) ; (consp tree)
-       (setq pend (cons (car tree) pend)
-             tree (cdr tree)))
-     (setq out (if tree (apply fn (list tree)))
+     (while (not (atom x)) ; (consp x)
+       (setq pend (cons (car x) pend)
+             x (cdr x)))
+     (setq y (if x (apply fn (list x)))
            pendlst nil
            newlst nil)
      (while pend
        (while pend
          (setq cur (car pend) pend (cdr pend))
          (if (atom cur)
-             (setq out (cons (apply fn (list cur)) out))
+             (setq y (cons (apply fn (list cur)) y))
              (progn
                (setq pendlst (cons pend pendlst)
-                     newlst (cons out newlst) pend nil)
+                     newlst (cons y newlst) pend nil)
                (while (not (atom cur)) ; (consp cur)
                  (setq pend (cons (car cur) pend) cur (cdr cur)))
-               (setq out (if cur (apply fn (list cur)))))))
+               (setq y (if cur (apply fn (list cur)))))))
        (while (and pendlst (null pend))
-         (setq out (cons out (car newlst)) newlst (cdr newlst)
+         (setq y (cons y (car newlst)) newlst (cdr newlst)
                pend (car pendlst) pendlst (cdr pendlst))))
-     out)))
+     y)))
 
-;; ### ll-some
-;; (**ll-some** _pred_: [ll-functionp] _lst_: [listp]): [ll-booleanp]
+;; ### (**ll-some** _pred_: [ll-functionp] _x_: [listp]): [ll-booleanp]
 ;;
 ;; TODO
 ;;
 ;; Similar to VisualLISP `vl-some`, but may accept only one list.
 (if (and (not *call:ignore-vlisp*)
          vl-some)
-    ;; NOTE: LispEx allows improper list, VisualLISP not.
-    (defun ll-some (pred lst)
-      (vl-some pred lst))
-    (defun ll-some (pred lst)
-      (and (ll-member-if pred lst))))
+    ;; NOTE: BricsCAD LISP allows improper list, VisualLISP not.
+    (defun ll-some (pred x)
+      (vl-some pred x))
+    (defun ll-some (pred x)
+      (and (ll-member-if pred x))))
 
-;; ### ll-every
-;; (**ll-every** _pred_: [ll-functionp] _lst_: [listp]): [ll-booleanp]
+;; ### (**ll-every** _pred_: [ll-functionp] _x_: [listp]): [ll-booleanp]
 ;;
 ;; TODO
 ;;
 ;; Similar to VisualLISP `vl-every`, but may accept only one list.
 (if (and (not *call:ignore-vlisp*)
          vl-every)
-    ;; NOTE: LispEx allows improper list, VisualLISP not.
-    (defun ll-every (pred lst)
-      (vl-every pred lst))
-    (defun ll-every (pred lst)
-      (not (ll-member-if-not pred lst))))
+    ;; NOTE: BricsCAD LISP allows improper list, VisualLISP not.
+    (defun ll-every (pred x)
+      (vl-every pred x))
+    (defun ll-every (pred x)
+      (not (ll-member-if-not pred x))))
 
-;; ### ll-foldl
-;; (**ll-foldl** _fn_: [ll-functionp] _init_: [ll-anyp] _lst_: [listp]): [listp]
+;; ### (**ll-foldl** _fn_: [ll-functionp] _init_: [ll-anyp] _x_: [listp]): [listp]
 ;;
 ;; The fundamental list iterator.
+;;
 ;; TODO
 ;; `ll-foldl` passes parameters to _fn_ in the same order as Scheme does,
 ;; i.e. `(fn current-item accumulator)`.
@@ -772,22 +724,21 @@
 ;;     (ll-foldl 'cons '() '(1 2 3 4)) => (4 3 2 1)
 ;;     (ll-foldl 'list '() '(1 2 3 4)) => (4 (3 (2 (1 NIL))))
 ;;
-;; See also `foldr`, `reduce`.
+;; See also `ll-foldr`, `ll-reduce`.
 (if *call:enable-preeval*
-    (defun ll-foldl (fn init lst)
+    (defun ll-foldl (fn init x)
       (setq fn (eval fn))
-      (while lst
-        (setq init (fn (car lst) init) ; Scheme fn args order
-              lst (cdr lst)))
+      (while x
+        (setq init (fn (car x) init) ; Scheme fn args order
+              x (cdr x)))
       init)
-    (defun ll-foldl (fn init lst)
-      (while lst
-        (setq init (apply fn (list (car lst) init)) ; Scheme fn args order
-              lst (cdr lst)))
+    (defun ll-foldl (fn init x)
+      (while x
+        (setq init (apply fn (list (car x) init)) ; Scheme fn args order
+              x (cdr x)))
       init))
 
-;; ### ll-foldr
-;; (**ll-foldr** _fn_: [ll-functionp] _init_: [ll-anyp] _lst_: [listp]): [listp]
+;; ### (**ll-foldr** _fn_: [ll-functionp] _init_: [ll-anyp] _x_: [listp]): [listp]
 ;;
 ;; The fundamental list recursion iterator.
 ;;
@@ -797,25 +748,24 @@
 ;;     (ll-foldr 'list '() '(1 2 3 4)) => (1 (2 (3 (4 NIL)))
 ;;
 ;; See also `ll-foldl`, `ll-reduce`.
-(defun ll-foldr (fn init lst)
-  (ll-foldl fn init (reverse lst)))
+(defun ll-foldr (fn init x)
+  (ll-foldl fn init (reverse x)))
 
-;; ### ll-reduce {#ll-reduce}{#ll-reduce-from-end}{#ll-reduce-with-init}
-;; (**ll-reduce** _fn_: [ll-functionp] _lst_: [listp]): [ll-anyp]
-;; (**ll-reduce-from-end** _fn_: [ll-functionp] _lst_: [listp]): [ll-anyp]
-;; (**ll-reduce-with-init** _fn_: [ll-functionp] _init_: [ll-anyp] _lst_: [listp]): [ll-anyp]
+;; ### (**ll-reduce** _fn_: [ll-functionp] _x_: [listp]): [ll-anyp]
+;; (**ll-reduce-from-end** _fn_: [ll-functionp] _x_: [listp]): [ll-anyp]
+;; (**ll-reduce-with-init** _fn_: [ll-functionp] _init_: [ll-anyp] _x_: [listp]): [ll-anyp]
 ;;
-;; Combines the elements of _lst_ using an associative binary operation _fn_.
+;; Combines the elements of _x_ using an associative binary operation _fn_.
 ;;
 ;; `ll-reduce` is left-associative, `ll-reduce-from-end` is right-associative.
-;; _init_ is logically placed before _lst_ (or after it in case of
+;; _init_ is logically placed before _x_ (or after it in case of
 ;; `ll-reduce-from-end`) and included in the reduction operation.
 ;;
-;; If _lst_ contains exactly one element, `ll-reduce` returns that element
+;; If _x_ contains exactly one element, `ll-reduce` returns that element
 ;; without ever calling _fn_.
-;; If _lst_ is empty, `ll-reduce` calls _fn_ with no arguments to obtain the
+;; If _x_ is empty, `ll-reduce` calls _fn_ with no arguments to obtain the
 ;; return value.
-;; If _lst_ is empty, `ll-reduce-with-init` returns _init_ without ever calling
+;; If _x_ is empty, `ll-reduce-with-init` returns _init_ without ever calling
 ;; _fn_.
 ;;
 ;; `ll-reduce`, `ll-reduce-from-end`, `ll-reduce-with-init` passes parameters
@@ -824,8 +774,8 @@
 ;;
 ;; The equivalent to missing `ll-reduce-from-end-with-init` is `ll-foldr`.
 ;;
-;; For performance reasons, you should use `(apply fn lst)` instead of
-;; `(ll-reduce fn lst)` when possible.
+;; For performance reasons, you should use `(apply fn x)` instead of
+;; `(ll-reduce fn x)` when possible.
 ;;
 ;;     (ll-reduce '* '(1 2 3 4 5)) => 120
 ;;     (ll-reduce '- '(1 2 3 4))
@@ -842,40 +792,37 @@
 ;;
 ;; See also `ll-foldl`, `ll-foldr`.
 (if *call:enable-preeval*
-    (defun ll-reduce-with-init (fn init lst)
+    (defun ll-reduce-with-init (fn init x)
       (setq fn (eval fn))
-      (while lst
-        (setq init (fn init (car lst)) ; Common Lisp fn args order
-              lst (cdr lst)))
+      (while x
+        (setq init (fn init (car x)) ; Common Lisp fn args order
+              x (cdr x)))
       init)
-    (defun ll-reduce-with-init (fn init lst)
-      (while lst
-        (setq init (apply fn (list init (car lst))) ; Common Lisp fn args order
-              lst (cdr lst)))
+    (defun ll-reduce-with-init (fn init x)
+      (while x
+        (setq init (apply fn (list init (car x))) ; Common Lisp fn args order
+              x (cdr x)))
       init))
-(defun ll-reduce (fn lst)
-  (if lst
-      (ll-reduce-with-init fn (car lst) (cdr lst))
-      (apply fn lst)))
-(defun ll-reduce-from-end (fn lst)
-  (if (setq lst (reverse lst))
-      (ll-foldl fn (car lst) (cdr lst))
-      (apply fn lst)))
+(defun ll-reduce (fn x)
+  (if x
+      (ll-reduce-with-init fn (car x) (cdr x))
+      (apply fn x)))
+(defun ll-reduce-from-end (fn x)
+  (if (setq x (reverse x))
+      (ll-foldl fn (car x) (cdr x))
+      (apply fn x)))
 
 
 ;; ## List Searching
-;; -----------------
 
-;; ### member
-;; (**member** _v_: [ll-anyp] _lst_: [listp]): [listp]
+;; ### (**member** _v_: [ll-anyp] _x_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
 ;; AutoLISP built-in.
 
-;; ### ll-member-if {#ll-member-if}{#ll-member-if-not}
-;; (**ll-member-if** _pred_: [ll-functionp] _lst_: [listp]): [listp]
-;; (**ll-member-if-not** _pred_: [ll-functionp] _lst_: [listp]): [listp]
+;; ### (**ll-member-if** _pred_: [ll-functionp] _x_: [listp]): [listp]
+;; (**ll-member-if-not** _pred_: [ll-functionp] _x_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
@@ -883,35 +830,34 @@
 ;; correspondingly.
 (if (and (not *call:ignore-vlisp*)
          vl-member-if)
-    ;; NOTE: LispEx allows improper list, VisualLISP not.
+    ;; NOTE: BricsCAD LISP allows improper list, VisualLISP not.
     (setq ll-member-if vl-member-if)
     (if *call:enable-preeval*
-        (defun ll-member-if (pred lst)
+        (defun ll-member-if (pred x)
           (setq pred (eval pred))
-          (while (and lst (not (pred (car lst))))
-            (setq lst (cdr lst)))
-          lst)
-        (defun ll-member-if (pred lst)
-          (while (and lst (not (apply pred (list (car lst)))))
-            (setq lst (cdr lst)))
-          lst)))
+          (while (and x (not (pred (car x))))
+            (setq x (cdr x)))
+          x)
+        (defun ll-member-if (pred x)
+          (while (and x (not (apply pred (list (car x)))))
+            (setq x (cdr x)))
+          x)))
 (if (and (not *call:ignore-vlisp*)
          vl-member-if-not)
-    ;; NOTE: LispEx allows improper list, VisualLISP not.
+    ;; NOTE: BricsCAD LISP allows improper list, VisualLISP not.
     (setq ll-member-if-not vl-member-if-not)
     (if *call:enable-preeval*
-        (defun ll-member-if-not (pred lst)
+        (defun ll-member-if-not (pred x)
           (setq pred (eval pred))
-          (while (and lst (pred (car lst)))
-            (setq lst (cdr lst)))
-          lst)
-        (defun ll-member-if-not (pred lst)
-          (while (and lst (apply pred (list (car lst))))
-            (setq lst (cdr lst)))
-          lst)))
+          (while (and x (pred (car x)))
+            (setq x (cdr x)))
+          x)
+        (defun ll-member-if-not (pred x)
+          (while (and x (apply pred (list (car x))))
+            (setq x (cdr x)))
+          x)))
 
-;; ### ll-position
-;; (**ll-position** _v_: [ll-anyp] _lst_: [listp]) -> (or [ll-natnump] [null])
+;; ### (**ll-position** _v_: [ll-anyp] _x_: [listp]) -> (or [ll-natnump] [null])
 ;;
 ;; TODO
 ;;
@@ -919,249 +865,234 @@
 (if (and (not *call:ignore-vlisp*)
          vl-position)
     (setq ll-position vl-position)
-    (defun ll-position (v lst / n)
+    (defun ll-position (v x / n)
       (setq n 0)
-      (while (and lst (not (equal v (car lst))))
+      (while (and x (not (equal v (car x))))
         (setq n (1+ n)
-              lst (cdr lst)))
-      (if lst n)))
+              x (cdr x)))
+      (if x n)))
 
-;; ### ll-position-if {#ll-position-if}{#ll-position-if-not}
-;; (**ll-position-if** _pred_: [ll-functionp] _lst_: [listp]) -> (or [ll-natnump] [null])
-;; (**ll-position-if-not** _pred_: [ll-functionp] _lst_: [listp]) -> (or [ll-natnump] [null])
+;; ### (**ll-position-if** _pred_: [ll-functionp] _x_: [listp]) -> (or [ll-natnump] [null])
+;; (**ll-position-if-not** _pred_: [ll-functionp] _x_: [listp]) -> (or [ll-natnump] [null])
 ;;
 ;; TODO
 (if *call:enable-preeval*
   (progn
-    (defun ll-position-if (pred lst / n)
+    (defun ll-position-if (pred x / n)
       (setq pred (eval pred)
             n 0)
-      (while (and lst
-                  (not (pred (car lst))))
+      (while (and x
+                  (not (pred (car x))))
         (setq n (1+ n)
-              lst (cdr lst)))
-      (if lst n))
-    (defun ll-position-if-not (pred lst / n)
+              x (cdr x)))
+      (if x n))
+    (defun ll-position-if-not (pred x / n)
       (setq pred (eval pred)
             n 0)
-      (while (and lst
-                  (pred (car lst)))
+      (while (and x
+                  (pred (car x)))
         (setq n (1+ n)
-              lst (cdr lst)))
-      (if lst n)))
+              x (cdr x)))
+      (if x n)))
   (progn
-    (defun ll-position-if (pred lst / n)
+    (defun ll-position-if (pred x / n)
       (setq n 0)
-      (while (and lst
-                  (not (apply pred (list (car lst)))))
+      (while (and x
+                  (not (apply pred (list (car x)))))
         (setq n (1+ n)
-              lst (cdr lst)))
-      (if lst n))
-    (defun ll-position-if-not (pred lst / n)
+              x (cdr x)))
+      (if x n))
+    (defun ll-position-if-not (pred x / n)
       (setq n 0)
-      (while (and lst
-                  (apply pred (list (car lst))))
+      (while (and x
+                  (apply pred (list (car x))))
         (setq n (1+ n)
-              lst (cdr lst)))
-      (if lst n))))
+              x (cdr x)))
+      (if x n))))
 
-;; ### ll-inlistp
-;; (**ll-inlistp** _v_: [ll-anyp] _lst_: [listp]): [ll-booleanp]
+;; ### (**ll-inlistp** _v_: [ll-anyp] _x_: [listp]): [ll-booleanp]
 ;;
-;; Returns `t` if item _v_ is present in the list _lst_.
+;; Returns `t` if item _v_ is present in the list _x_.
 ;;
-;; Identical to LispEx `vle-member`.
+;; Identical to BricsCAD LISP `vle-member`.
 (cond
   ((and (not *call:ignore-lispex*)
         vle-member)
    (setq ll-inlistp vle-member))
   ((and (not *call:ignore-vlisp*)
         vl-position)
-   (defun ll-inlistp (v lst)
-     (or (vl-position v lst))))
+   (defun ll-inlistp (v x)
+     (or (vl-position v x))))
   (t
-   (defun ll-inlistp (v lst)
-     (or (member v lst)))))
+   (defun ll-inlistp (v x)
+     (or (member v x)))))
 
-;; ### ll-mismatch
-;; (**ll-mismatch** _lst1_: [listp] _lst2_: [listp]) -> (or [ll-natnump] [null])
+;; ### (**ll-mismatch** _x_: [listp] _y_: [listp]) -> (or [ll-natnump] [null])
 ;;
-;; Compares _lst1_ and _lst2_. If they are the same length and the
+;; Compares _x_ and _y_. If they are the same length and the
 ;; corresponding elements match (according to `equal` function), it returns
 ;; `nil`. If there is a mismatch, the function returns the index (relative to
-;; _lst1_) of the first mismatching element. This will be the leftmost pair of
+;; _x_) of the first mismatching element. This will be the leftmost pair of
 ;; elements that do not match, or the position at which the shorter of the two
 ;; otherwise-matching lists runs out.
-(defun ll-mismatch (lst1 lst2 / n)
+(defun ll-mismatch (x y / n)
   (setq n 0)
-  (while (and lst1
-              lst2
-              (equal (car lst1) (car lst2)))
-    (setq lst1 (cdr lst1)
-          lst2 (cdr lst2)
+  (while (and x
+              y
+              (equal (car x) (car y)))
+    (setq x (cdr x)
+          y (cdr y)
           n (1+ n)))
-  (if (not (and (null lst1) (null lst2))) n))
+  (if (not (and (null x) (null y))) n))
 
 ;(if (and (not *call:ignore-lispex*) vle-search) ; FIXME: vl-search & ll-search should be different.
 ;    (setq ll-search vle-search)
-;    (defun ll-search (lst1 lst2) ;--- FIXME: (vle-search v lst asidx)
+;    (defun ll-search (x y) ;--- FIXME: (vle-search v x asidx)
 ;      nil)) ;--- TODO
 
 
 ;; ## List Modifying
-;; -----------------
 
-;; ### subst
-;; (**subst** _new_: [ll-anyp] _old_: [ll-anyp] _lst_: [listp]): [listp]
+;; ### (**subst** _new_: [ll-anyp] _old_: [ll-anyp] _x_: [listp]): [listp]
 ;;
 ;; Returns a list, with _new_ item replacing all occurrences of _old_ item.
 ;;
-;; If _old_item is not found in _lst_, returns _lst_ unchanged.
+;; If _old_item is not found in _x_, returns _x_ unchanged.
 ;;
-;; Unlike CommonLisp which performs operation on tree, searches top level only.
-;; Use `ll-substree` for CommonLisp behaviour.
+;; Unlike Common Lisp which performs operation on tree, searches top level only.
+;; Use `ll-substree` for Common Lisp behaviour.
 ;;
 ;; AutoLISP built-in.
 
-;; ### ll-subst-nth
-;; (**ll-subst-nth** _new_: [ll-anyp] _n_: [ll-natnump] _lst_: [listp]): [listp]
+;; ### (**ll-subst-nth** _new_: [ll-anyp] _n_: [ll-natnump] _x_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
-;; Similar to LispEx `vle-subst-nth`, but with different parameters order.
+;; Similar to BricsCAD LISP `vle-subst-nth`, but with different parameters order.
 (if (and (not *call:ignore-lispex*)
          vle-subst-nth)
-    (defun ll-subst-nth (new n lst)
-      (vle-subst-nth lst n new))
-    (defun ll-subst-nth (new n lst)
-      (setq lst (ll-split-at n lst))
-      (if (cdr lst)
-          (append (car lst) (cons new (cddr lst)))
-          (car lst))))
+    (defun ll-subst-nth (new n x)
+      (vle-subst-nth x n new))
+    (defun ll-subst-nth (new n x)
+      (setq x (ll-split-at n x))
+      (if (cdr x)
+          (append (car x) (cons new (cddr x)))
+          (car x))))
 
-;; ### ll-subst-first
-;; (**ll-subst-first** _new_: [ll-anyp] _old_: [ll-anyp] _lst_: [listp]): [listp]
+;; ### (**ll-subst-first** _new_: [ll-anyp] _old_: [ll-anyp] _x_: [listp]): [listp]
 ;;
 ;; TODO
 (if (and (not (or *call:ignore-lispex*
                   *call:ignore-vlisp*))
          vle-subst-nth
          vl-position)
-    (defun ll-subst-first (new old lst / n)
-      (if (setq n (vl-position old lst))
-          (vle-subst-nth lst n new)
-          lst))
-    (defun ll-subst-first (new old lst)
-      (setq lst (ll-split-at-first old lst))
-      (if (cdr lst)
-          (append (car lst) (cons new (cdadr lst)))
-          (car lst))))
+    (defun ll-subst-first (new old x / n)
+      (if (setq n (vl-position old x))
+          (vle-subst-nth x n new)
+          x))
+    (defun ll-subst-first (new old x)
+      (setq x (ll-split-at-first old x))
+      (if (cdr x)
+          (append (car x) (cons new (cdadr x)))
+          (car x))))
 
-;; ### ll-subst-last
-;; (**ll-subst-last** _new_ _old_: [ll-anyp] _lst_: [listp]): [listp]
+;; ### (**ll-subst-last** _new_ _old_: [ll-anyp] _x_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
-;; Equivalent to `(reverse (subst-first new old (reverse lst)))`.
-(defun ll-subst-last (new old lst)
-  (setq lst (ll-split-at-last old lst))
-  (if (cdr lst)
-      (append (car lst) (cons new (cdadr lst)))
-      (car lst)))
+;; Equivalent to `(reverse (ll-subst-first new old (reverse x)))`.
+(defun ll-subst-last (new old x)
+  (setq x (ll-split-at-last old x))
+  (if (cdr x)
+      (append (car x) (cons new (cdadr x)))
+      (car x)))
 
-;; ### ll-subst-if {#ll-subst-if}{#ll-subst-if-not}
-;; (**ll-subst-if** _new_: [ll-anyp] _pred_: [ll-functionp] _lst_: [listp]): [listp]
-;; (**ll-subst-if-not** _new_: [ll-anyp] _pred_: [ll-functionp] _lst_: [listp]): [listp]
+;; ### (**ll-subst-if** _new_: [ll-anyp] _pred_: [ll-functionp] _x_: [listp]): [listp]
+;; (**ll-subst-if-not** _new_: [ll-anyp] _pred_: [ll-functionp] _x_: [listp]): [listp]
 ;;
 ;; TODO
 (if *call:enable-preeval*
     (progn
-      (defun ll-subst-if (new pred lst)
+      (defun ll-subst-if (new pred x)
         (setq pred (eval pred))
-        (mapcar (function (lambda (x) (if (pred x) new x)))
-                lst))
-      (defun ll-subst-if-not (new pred lst)
+        (mapcar (function (lambda (v) (if (pred v) new v)))
+                x))
+      (defun ll-subst-if-not (new pred x)
         (setq pred (eval pred))
-        (mapcar (function (lambda (x) (if (pred x) x new)))
-                lst)))
+        (mapcar (function (lambda (v) (if (pred v) v new)))
+                x)))
     (progn
-      (defun ll-subst-if (new pred lst)
-        (mapcar (function (lambda (x) (if (apply pred (list x)) new x)))
-                lst))
-      (defun ll-subst-if-not (new pred lst)
-        (mapcar (function (lambda (x) (if (apply pred (list x)) x new)))
-                lst))))
+      (defun ll-subst-if (new pred x)
+        (mapcar (function (lambda (v) (if (apply pred (list v)) new v)))
+                x))
+      (defun ll-subst-if-not (new pred x)
+        (mapcar (function (lambda (v) (if (apply pred (list v)) v new)))
+                x))))
 
-;; ### ll-substree
-;; (**ll-substree** _new_: [ll-anyp] _old_: [ll-anyp] _tree_: [listp]): [listp]
+;; ### (**ll-substree** _new_: [ll-anyp] _old_: [ll-anyp] _x_: [listp]): [listp]
 ;;
 ;; TODO
-(defun ll-substree (new old tree)
+(defun ll-substree (new old x)
   ;; FIXME: OPTIMIZE: rewrite without recursion (use ll-maptree like ll-sublis?)
-  (cond ((equal old tree) new)
-        ((atom tree) tree)
-        (t (cons (ll-substree new old (car tree))
-                 (ll-substree new old (cdr tree))))))
+  (cond ((equal old x) new)
+        ((atom x) x)
+        (t (cons (ll-substree new old (car x))
+                 (ll-substree new old (cdr x))))))
 
-;; ### ll-sublis
-;; (**ll-sublis** _alist_: [listp] _tree_: [listp]): [listp]
+;; ### (**ll-sublis** _alist_: [listp] _x_: [listp]): [listp]
 ;;
 ;; Like [`ll-substree`](#ll-substree), except that it takes an association list
-;; _alist_ of old-new pairs. Each element of _tree_ is compared with the cars of
+;; _alist_ of old-new pairs. Each element of _x_ is compared with the cars of
 ;; _alist_; if it matches, it is replaced by the corresponding cdr.
-(defun ll-sublis (alist tree)
+(defun ll-sublis (alist x)
   (ll-maptree
     (function (lambda (k / p)
                 (if (setq p (assoc k alist)) (cdr p) k)))
-    tree))
+    x))
 
-;; ### ll-flatten
-;; (**ll-flatten** _lst_: [listp]): [listp]
+;; ### (**ll-flatten** _x_: [listp]): [listp]
 ;;
 ;; TODO
-(defun ll-flatten (lst / out cur)
+(defun ll-flatten (x / y cur)
   ;; works for dotted lists
   ;; see ll-maptree
   (cond
-    ((null lst) nil)
-    ((atom lst) lst)
-    (t (while lst
-         (if (atom lst) ; for processing '(1 2 . 3)
-             (setq cur lst
-                   lst nil)
-             (setq cur (car lst)
-                   lst (cdr lst)))
+    ((null x) nil)
+    ((atom x) x)
+    (t (while x
+         (if (atom x) ; for processing '(1 2 . 3)
+             (setq cur x
+                   x nil)
+             (setq cur (car x)
+                   x (cdr x)))
          (while (not (atom cur)) ; (ll-consp cur)
-           (if (cdr cur) (setq lst (cons (cdr cur) lst)))
+           (if (cdr cur) (setq x (cons (cdr cur) x)))
            (setq cur (car cur)))
          ;; now cur is atom
-         (setq out (cons cur out)))
-       (reverse out))))
+         (setq y (cons cur y)))
+       (reverse y))))
 
-;; ### ll-insert
-;; (**ll-insert** _new_: [ll-anyp] _n_: [ll-natnump] _lst_: [listp]): [listp]
+;; ### (**ll-insert** _new_: [ll-anyp] _n_: [ll-natnump] _x_: [listp]): [listp]
 ;;
 ;; TODO
-(defun ll-insert (new n lst)
-  (setq lst (ll-split-at n lst))
-  (append (car lst) (cons new (cadr lst))))
+(defun ll-insert (new n x)
+  (setq x (ll-split-at n x))
+  (append (car x) (cons new (cadr x))))
 
-;; ### ll-remove
-;; (**ll-remove** _v_: [ll-anyp] _lst_: [listp]): [listp]
+;; ### (**ll-remove** _v_: [ll-anyp] _x_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
-;; Identical to VisualLISP `vl-remove` and LispEx `vle-remove-all`.
+;; Identical to VisualLISP `vl-remove` and BricsCAD LISP `vle-remove-all`.
 (if (and (not *call:ignore-vlisp*)
          vl-remove)
     (setq ll-remove vl-remove)
-    (defun ll-remove (v lst)
+    (defun ll-remove (v x)
       (apply (function append)
-             (subst nil (list v) (mapcar (function list) lst)))))
+             (subst nil (list v) (mapcar (function list) x)))))
 
-;; ### ll-remove-if {ll-remove-if}{ll-remove-if-not}
-;; (**ll-remove-if** _pred_: [ll-functionp] _lst_: [listp]): [listp]
-;; (**ll-remove-if-not** _pred_: [ll-functionp] _lst_: [listp]): [listp]
+;; ### (**ll-remove-if** _pred_: [ll-functionp] _x_: [listp]): [listp]
+;; (**ll-remove-if-not** _pred_: [ll-functionp] _x_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
@@ -1171,128 +1102,120 @@
          vl-remove-if)
     (setq ll-remove-if vl-remove-if)
     (if *call:enable-preeval*
-        (defun ll-remove-if (pred lst)
+        (defun ll-remove-if (pred x)
           (setq pred (eval pred))
           (apply (function append)
                  (mapcar (function
-                           (lambda (x)
-                             (if (not (pred x))
-                                 (list x))))
-                         lst)))
-        (defun ll-remove-if (pred lst)
+                           (lambda (v)
+                             (if (not (pred v))
+                                 (list v))))
+                         x)))
+        (defun ll-remove-if (pred x)
           (apply (function append)
                  (mapcar (function
-                           (lambda (x)
-                             (if (not (apply pred (list x)))
-                                 (list x))))
-                         lst)))))
+                           (lambda (v)
+                             (if (not (apply pred (list v)))
+                                 (list v))))
+                         x)))))
 (if (and (not *call:ignore-vlisp*)
          vl-remove-if-not)
     (setq ll-remove-if-not vl-remove-if-not)
     (if *call:enable-preeval*
-        (defun ll-remove-if-not (pred lst)
+        (defun ll-remove-if-not (pred x)
           (setq pred (eval pred))
           (apply (function append)
                  (mapcar (function
-                           (lambda (x)
-                             (if (pred x)
-                                 (list x))))
-                         lst)))
-        (defun ll-remove-if-not (pred lst)
+                           (lambda (v)
+                             (if (pred v)
+                                 (list v))))
+                         x)))
+        (defun ll-remove-if-not (pred x)
           (apply (function append)
                  (mapcar (function
-                           (lambda (x)
-                             (if (apply pred (list x))
-                                 (list x))))
-                         lst)))))
+                           (lambda (v)
+                             (if (apply pred (list v))
+                                 (list v))))
+                         x)))))
 
-;; ### ll-remove-nth
-;; (**ll-remove-nth** _n_: [ll-natnump] _lst_: [listp]): [listp]
+;; ### (**ll-remove-nth** _n_: [ll-natnump] _x_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
-;; Identical to LispEx `vle-remove-nth`.
+;; Identical to BricsCAD LISP `vle-remove-nth`.
 (if (and (not *call:ignore-lispex*)
          vle-remove-nth)
     (setq ll-remove-nth vle-remove-nth)
-    (defun ll-remove-nth (n lst)
-      (setq lst (ll-split-at n lst))
-      (append (car lst) (cdadr lst))))
+    (defun ll-remove-nth (n x)
+      (setq x (ll-split-at n x))
+      (append (car x) (cdadr x))))
 
-;; ### ll-remove-first
-;; (**ll-remove-first** _v_: [ll-anyp] _lst_: [listp]): [listp]
+;; ### (**ll-remove-first** _v_: [ll-anyp] _x_: [listp]): [listp]
 ;;
 ;; TODO
 ;;
-;; Identical to LispEx `vle-remove-first`.
+;; Identical to BricsCAD LISP `vle-remove-first`.
 (if (and (not *call:ignore-lispex*)
          vle-remove-first)
     (setq ll-remove-first vle-remove-first)
-    (defun ll-remove-first (v lst)
-      (setq lst (ll-split-at-first v lst))
-      (append (car lst) (cdadr lst))))
+    (defun ll-remove-first (v x)
+      (setq x (ll-split-at-first v x))
+      (append (car x) (cdadr x))))
 
-;; ### ll-remove-last
-;; (**ll-remove-last** _v_: [ll-anyp] _lst_: [listp]): [listp]
+;; ### (**ll-remove-last** _v_: [ll-anyp] _x_: [listp]): [listp]
 ;;
 ;; TODO
-(defun ll-remove-last (v lst)
-  (setq lst (ll-split-at-last v lst))
-  (append (car lst) (cdadr lst)))
+(defun ll-remove-last (v x)
+  (setq x (ll-split-at-last v x))
+  (append (car x) (cdadr x)))
 
-;; ### ll-remove-duplicates
-;; (**ll-remove-duplicates** _lst_: [listp]): [listp]
+;; ### (**ll-remove-duplicates** _x_: [listp]): [listp]
 ;;
 ;; TODO
-(defun ll-remove-duplicates (lst / out)
-  (while lst
-    ;(or (member (car lst) out)
-    (or (ll-inlistp (car lst) out)
-        (setq out (cons (car lst) out)))
-    (setq lst (cdr lst)))
-  (reverse out))
+(defun ll-remove-duplicates (x / y)
+  (while x
+    ;(or (member (car x) y)
+    (or (ll-inlistp (car x) y)
+        (setq y (cons (car x) y)))
+    (setq x (cdr x)))
+  (reverse y))
 
-;; ### ll-remove-adjacent-duplicates
-;; (**ll-remove-adjacent-duplicates** _lst_: [listp]): [listp]
+;; ### (**ll-remove-adjacent-duplicates** _x_: [listp]): [listp]
 ;;
 ;; TODO (faster then remove-duplicates on some (e.g. sorted) lists)
-(defun ll-remove-adjacent-duplicates (lst / out)
-  (while lst
-    (or (equal (car lst) (car out))
-        (setq out (cons (car lst) out)))
-    (setq lst (cdr lst)))
-  (reverse out))
+(defun ll-remove-adjacent-duplicates (x / y)
+  (while x
+    (or (equal (car x) (car y))
+        (setq y (cons (car x) y)))
+    (setq x (cdr x)))
+  (reverse y))
 
 
 ;; ## List Tail Sharing
-;; --------------------
 
-;; ### ll-tailp
-;; (**ll-tailp** _v_: [ll-anyp] _lst_: [listp]): [ll-booleanp]
+;; ### (**ll-tailp** _v_: [ll-anyp] _x_: [listp]): [ll-booleanp]
 ;;
-;; Returns `t` if _v_ is the same as some tail of _lst_, i.e., is `eq`
-;; to _lst_ or to any of its cdrs.
-(defun ll-tailp (v lst)
-  (while (not (or (atom lst) (eq v lst)))
-    (setq lst (cdr lst)))
-  (eq v lst))
+;; Returns `t` if _v_ is the same as some tail of _x_, i.e., is `eq`
+;; to _x_ or to any of its cdrs.
+(defun ll-tailp (v x)
+  (while (not (or (atom x) (eq v x)))
+    (setq x (cdr x)))
+  (eq v x))
 
-;; ### ll-ldiff
-;; (**ll-ldiff** _lst_: [ll-anyp] _v_: [listp]): [listp]
+;; ### (**ll-ldiff** _x_: [ll-anyp] _v_: [listp]): [listp]
 ;;
 ;; Returns a copy of a list up to a given cons cell.
 ;;
-;; If _v_ is the same as some tail of _lst_, i.e., is `eq` to one of the
-;; cons cells of _lst_, it returns a copy of the part of _lst_ up to but not
-;; including _v_; otherwise, a copy of _lst_ is returned. For example,
-;; `(ll-ldiff lst (cddr lst))` returns the first two elements of the list _lst_.
+;; If _v_ is the same as some tail of _x_, i.e., is `eq` to one of the
+;; cons cells of _x_, it returns a copy of the part of _x_ up to but not
+;; including _v_; otherwise, a copy of _x_ is returned. For example,
+;; `(ll-ldiff x (cddr x))` returns the first two elements of the list _x_.
 ;;
-;; `(ll-ldiff lst (ll-last-cdr lst)) == (ll-butlast lst)`
-(defun ll-ldiff (lst v / out)
-  (while (not (or (atom lst) (eq v lst)))
-    (setq out (cons (car lst) out)
-          lst (cdr lst)))
-  (reverse out))
+;; `(ll-ldiff x (ll-last-cdr x)) == (ll-butlast x)`
+(defun ll-ldiff (x v / y)
+  (while (not (or (atom x) (eq v x)))
+    (setq y (cons (car x) y)
+          x (cdr x)))
+  (reverse y))
 
 
 (if ll-features (ll-provide "call/lists"))
